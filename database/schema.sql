@@ -1,0 +1,1 @@
+esse aqruivo cria as tabelas; define como o banco é organizado
