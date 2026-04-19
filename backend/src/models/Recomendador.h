@@ -1,2 +1,0 @@
-/* o header (.h) é onde ficam as declarações das classes, funções, variáveis, etc. 
-Ele é usado para informar ao compilador sobre a estrutura do código que será implementado no arquivo de implementação (.cpp). */

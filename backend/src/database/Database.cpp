@@ -1,1 +1,0 @@
-// conexão com o banco de dados é feito aqui, utilizando a biblioteca escolhida (o sqlite3 normalmente é uma biblioteca mais simples)
