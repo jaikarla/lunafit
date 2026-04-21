@@ -1,17 +1,14 @@
-#include <iostream>
-#include "sqlite3.h"
+#include "database/Database.h"
 
-int main(){
-    sqlite3* db;
-   
-    int resultado = sqlite3_open("src/database/lunafit.db", &db);
+int main() {
+    Database db;
 
-    if(resultado){
-        std:: cout << "Erro ao abrir banco de dados\n";
-    }
+    if (!db.connect("../backend/src/database/lunafit.db"))
+        return 1;
 
-    std::cout << "Banco de Dados funcionando!\n";
+    db.execute("CREATE TABLE IF NOT EXISTS Teste (id INTEGER PRIMARY KEY, nome TEXT);");
+    db.execute("INSERT INTO Teste (nome) VALUES ('Mara');");
 
-    sqlite3_close(db);
+    db.close();
     return 0;
 }
