@@ -44,3 +44,5 @@ settings.json
 
 .vscode/
 build/
+
+*.db
