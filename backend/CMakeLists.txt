@@ -14,9 +14,18 @@ include_directories(src) # Adiciona o diretório de inclusão para os arquivos d
 # Adicione os arquivos de origem do backend
 add_executable(lunafit_backend
     src/main.cpp
-    src/database/Database.cpp
+    src/database/database.cpp
     src/models/Usuario.cpp
     src/models/CicloMenstrual.cpp
-    src/models/Recomendador.cpp
+    src/services/RecomendadorTreino.cpp
+    src/database/sqlite/sqlite3.c
     # Adicione outros arquivos de origem conforme necessário
+)
+
+target_include_directories(lunafit_backend PRIVATE
+    src/database/sqlite
+) # o executavel pode acessar arquivos .h (permite que se encontre o sqlite.h) - samara
+
+target_compile_definitions(lunafit_backend PRIVATE
+    _WIN32_WINNT=0x0600
 )

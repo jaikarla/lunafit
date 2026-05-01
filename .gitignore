@@ -41,3 +41,8 @@
 *.dwo
 
 settings.json
+
+.vscode/
+build/
+
+*.db
