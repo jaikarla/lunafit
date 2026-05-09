@@ -16,11 +16,20 @@ add_executable(lunafit_backend
     src/database/database.cpp
     src/database/sqlite/sqlite3.c
     
-    # Models (adicionar os models)
-    src/models/Usuario.cpp
+    # Models 
+    src/models/EstadoUsuario.cpp
     src/models/CicloMenstrual.cpp
+    src/models/Exercicio.cpp
+    src/models/ExercicioBemEstar.cpp
+    src/models/ExercicioFortalecimento.cpp
+    src/models/HistoricoTreinoDiario.cpp
+    src/models/PerfilFisico.cpp
+    src/models/PlanoTreinoDiario.cpp
+    src/models/Treino.cpp
+    src/models/TreinoRealizado.cpp
+    src/models/Usuario.cpp
     
-    # Services (Camada que você está desenvolvendo)
+    # Services 
     src/services/RecomendadorTreino.cpp
     src/services/FaseMenstrual.cpp
     src/services/FaseFolicular.cpp

@@ -68,6 +68,10 @@ int main() {
     u2.setSentimentoHoje("animada");
     executarTeste("Fase Folicular + Alta Performance", u2, std::make_unique<FaseFolicular>(), db);
 
+    // Exemplo de uso futuro com os Models:
+    // DadosUsuario dadosDoUsuario = DadosUsuario::criarDe(usuario, cicloMenstrual, estadoUsuario, "moderado", 15);
+    // recomendador.obterRecomendacaoDiaria(dadosDoUsuario, db);
+
     db.close();
     return 0;
 }

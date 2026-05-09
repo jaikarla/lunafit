@@ -6,6 +6,12 @@
 #include <vector>
 #include "database/sqlite/sqlite3.h"
 
+// Forward declarations dos Models
+class Usuario;
+class PerfilFisico;
+class CicloMenstrual;
+class EstadoUsuario;
+
 // Classe para encapsular os dados de estado da usuária
 // usando os termos idênticos ao seed.sql para evitar erros de consulta
 class DadosUsuario {
@@ -28,6 +34,15 @@ public:
         : faseCiclo(fase), objetivo(obj), restricaoFisica(restricao),
           intensidadeRequerida(intensidade), nivelExperiencia(nivel),
           disposicao(disp), sentimentoHoje(sentimento) {}
+
+    // Factory method para criar DadosUsuario a partir dos Models
+    // Converte Usuario, CicloMenstrual e EstadoUsuario em um DTO para estratégias
+    static DadosUsuario criarDe(const Usuario& usuario, const CicloMenstrual& ciclo, 
+                                const EstadoUsuario& estado, const std::string& intensidade,
+                                int diaAtual);
+
+    // Getter para a primeira restrição (se houver múltiplas, retorna a primeira)
+    static std::string obterPrimeiraRestricao(const PerfilFisico& perfil);
 
     // Getters
     const std::string& getFaseCiclo() const { return faseCiclo; }
