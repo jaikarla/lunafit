@@ -9,7 +9,19 @@ project(LunafitBackend) # Define o nome do projeto
 
 set(CMAKE_CXX_STANDARD 17) # Define o padrão do C++ a ser usado
 
-include_directories(src) # Adiciona o diretório de inclusão para os arquivos de cabeçalho (headers)
+include_directories( # Adiciona o diretório de inclusão para os arquivos de cabeçalho (headers)
+    src
+    external
+)
+
+add_executable(crow_test #define o executável para os testes do Crow
+    src/server_test.cpp
+)
+
+target_link_libraries(crow_test
+    ws2_32
+    mswsock
+)
 
 # Adicione os arquivos de origem do backend
 add_executable(lunafit_backend
