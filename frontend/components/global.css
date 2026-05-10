@@ -1,0 +1,60 @@
+/* Definição de Variáveis Globais */
+:root {
+    --bg-gradient: linear-gradient(135deg, #810485 0%, #f06292 60%, #ff8a65 100%);
+    --primary-purple: #810485;
+    --primary-pink: #f06292;
+    --accent-yellow: #ff8a65;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    
+    --font-main: 'Karla', sans-serif;
+    --font-title: 'Cormorant Garamond', serif;
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main) !important;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, .brand-name {
+    font-family: var(--font-title) !important;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+}
+
+body, p, span, small, button, .btn, .footer-note {
+    font-family: 'Karla', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Ícones Lucide */
+.icon-box i {
+    width: 20px; 
+    height: 20px;
+    display: block;
+    stroke: #ffffff !important;
+    /* stroke-width definido via JS no final do HTML */
+}
+
+.lucide {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+}
