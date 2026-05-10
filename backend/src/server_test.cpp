@@ -1,22 +1,20 @@
 #include "crow/app.h"
+#include "routes/UsuarioRoutes.h"
+#include "routes/TreinoRoutes.h"
+#include "routes/HistoricoRoutes.h"
+
+#include <iostream>
 
 int main() {
-    try {
-        crow::SimpleApp app;
+    crow::SimpleApp app;
 
-        CROW_ROUTE(app, "/")([]() {
-            return "LunaFit API funcionando!";
-        });
+    registrarUsuarioRoutes(app);
+    registrarTreinoRoutes(app);
+    registrarHistoricoRoutes(app);
 
-        std::cout << "Servidor iniciando..." << std::endl;
+    std::cout << "Servidor iniciando na porta 18080..." << std::endl;
 
-        app.port(18080).multithreaded().run();
-
-    } catch (const std::exception& e) {
-        std::cerr << "ERRO: " << e.what() << std::endl;
-    }
-
-    std::cout << "Programa encerrado." << std::endl;
+    app.port(18080).multithreaded().run();
 
     return 0;
 }

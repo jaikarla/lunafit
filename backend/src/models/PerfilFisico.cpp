@@ -1,5 +1,7 @@
 #include "PerfilFisico.h"
 
+//PerfilFisico::PerfilFisico() {} //para permitir criação de objetos temporários sem parâmetros, útil para testes e inicializações simples
+
 //classe que representa o perfil físico de um usuário, incluindo seus objetivos, nível de experiência e restrições físicas
 //construtor para inicializar o perfil físico com objetivo e nível de experiência
 PerfilFisico::PerfilFisico(std::string objetivo, std::string nivelExperiencia)

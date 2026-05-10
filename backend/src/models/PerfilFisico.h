@@ -10,6 +10,10 @@ private:
     std::vector<std::string> restricoesFisicas;
 
 public:
+    //construtor padrão para teste e criação de objetos temporários
+    //PerfilFisico();
+
+    //construtor completo para criação de perfis físicos reais
     PerfilFisico(std::string objetivo, std::string nivelExperiencia);
 
     void adicionarRestricao(const std::string& restricao);

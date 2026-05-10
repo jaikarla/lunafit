@@ -21,6 +21,18 @@ void Usuario::atualizarPerfil(
     perfilFisico = novoPerfil;
 }
 
+int Usuario::getId() const {
+    return id;
+}
+
+int Usuario::getIdade() const {
+    return idade;
+}
+
+std::string Usuario::getEmail() const {
+    return email;
+}
+
 std::string Usuario::getNome() const {
     return nome;
 }

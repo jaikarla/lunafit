@@ -12,7 +12,38 @@ include_directories(
 ) # Adiciona o diretório de inclusão para os arquivos de cabeçalho (headers)
 
 add_executable(crow_test #define o executável para os testes do Crow
-    src/server_test.cpp
+   src/server_test.cpp
+
+    src/controllers/UsuarioController.cpp
+    src/controllers/TreinoController.cpp
+    src/controllers/HistoricoController.cpp
+
+    src/services/UsuarioService.cpp
+    src/services/RecomendadorTreino.cpp
+    src/services/FaseMenstrual.cpp
+    src/services/FaseFolicular.cpp
+    src/services/FaseOvulatoria.cpp
+    src/services/FaseLutea.cpp
+    src/services/EstrategiaTreino.cpp
+    
+
+    src/models/Usuario.cpp
+    src/models/EstadoUsuario.cpp
+    src/models/PerfilFisico.cpp
+    src/models/CicloMenstrual.cpp
+    src/models/HistoricoTreinoDiario.cpp
+    src/models/TreinoRealizado.cpp
+
+    src/database/database.cpp
+    src/database/sqlite/sqlite3.c
+)
+
+target_include_directories(crow_test PRIVATE
+    src/database/sqlite
+)
+
+target_compile_definitions(crow_test PRIVATE
+    _WIN32_WINNT=0x0600
 )
 
 target_link_libraries(crow_test
@@ -25,6 +56,8 @@ add_executable(lunafit_backend
     src/main.cpp
     src/database/database.cpp
     src/database/sqlite/sqlite3.c
+
+    # Controllers
     
     # Models 
     src/models/EstadoUsuario.cpp
