@@ -1,77 +1,74 @@
-// ARQUIVO MAIN COM TESTE 
-
 #include <iostream>
-#include <memory>
-#include <vector>
-#include "database/Database.h"
-#include "services/RecomendadorTreino.h"
-#include "services/FaseMenstrual.h"
-#include "services/FaseFolicular.h"
-#include "services/FaseLutea.h"
-#include "services/FaseOvulatoria.h"
+
+#include "crow/app.h" //inclui a biblioteca Crow para criar o servidor web
+
+#include "database/Database.h" //inclui a classe Database para gerenciar a conexão com o banco de dados
+
+//inclui os arquivos de rotas para cada entidade do sistema
+#include "routes/UsuarioRoutes.h"
+#include "routes/TreinoRoutes.h"
+#include "routes/HistoricoRoutes.h"
+
 #ifdef _WIN32
-    #include <windows.h>
+#include <windows.h>
 #endif
 
-void executarTeste(std::string cenario, const DadosUsuario& dados, std::unique_ptr<EstrategiaTreino> fase, Database& db) {
-    RecomendadorTreino motor;
-    motor.definirFaseDoCiclo(std::move(fase));
-    
-    std::cout << "\n>>> TESTE: " << cenario << std::endl;
-    std::cout << "Dados: objetivo=" << dados.getObjetivo()
-              << ", intensidade=" << dados.getIntensidadeRequerida()
-              << ", restricao=" << dados.getRestricaoFisica() << std::endl;
-    
-    std::cout << "Saida do Sistema:\n";
-    std::cout << motor.obterRecomendacaoDiaria(dados, db) << std::endl;
-    std::cout << "--------------------------------------------" << std::endl;
-}
-
 int main() {
-    #ifdef _WIN32
-        SetConsoleOutputCP(CP_UTF8); // força o terminal a usar UTF-8
-    #endif
+
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
 
     Database db;
+
     if (!db.connect("lunafit.db")) {
-        std::cerr << "Nao foi possivel conectar ao banco de dados." << std::endl;
+
+        std::cerr
+            << "Nao foi possivel conectar ao banco."
+            << std::endl;
+
         return 1;
     }
 
     if (!db.executeFile("schema.sql")) {
-        std::cerr << "Erro ao criar as tabelas." << std::endl;
+
+        std::cerr
+            << "Erro ao criar tabelas."
+            << std::endl;
     }
 
     if (!db.executeFile("seed.sql")) {
-        std::cerr << "Erro ao carregar os dados iniciais." << std::endl;
+
+        std::cerr
+            << "Erro ao carregar seed."
+            << std::endl;
     }
 
-    //teste 1
-    DadosUsuario u1;
-    u1.setFaseCiclo("menstrual");
-    u1.setObjetivo("bem_estar");
-    u1.setIntensidadeRequerida("leve");
-    u1.setRestricaoFisica("joelho");
-    u1.setNivelExperiencia("iniciante");
-    u1.setDisposicao("baixa");
-    u1.setSentimentoHoje("cansada");
-    executarTeste("Fase Menstrual + Restricao Joelho", u1, std::make_unique<FaseMenstrual>(), db);
+    std::cout
+        << "Banco conectado com sucesso."
+        << std::endl;
 
-    // teste 2
-    DadosUsuario u2;
-    u2.setFaseCiclo("folicular");
-    u2.setObjetivo("fortalecimento");
-    u2.setIntensidadeRequerida("alta");
-    u2.setRestricaoFisica("nenhuma");
-    u2.setNivelExperiencia("avancado");
-    u2.setDisposicao("alta");
-    u2.setSentimentoHoje("animada");
-    executarTeste("Fase Folicular + Alta Performance", u2, std::make_unique<FaseFolicular>(), db);
+    crow::SimpleApp app;
 
-    // Exemplo de uso futuro com os Models:
-    // DadosUsuario dadosDoUsuario = DadosUsuario::criarDe(usuario, cicloMenstrual, estadoUsuario, "moderado", 15);
-    // recomendador.obterRecomendacaoDiaria(dadosDoUsuario, db);
+    registrarUsuarioRoutes(app);
+
+    registrarTreinoRoutes(app);
+
+    registrarHistoricoRoutes(app);
+
+    std::cout
+        << "Servidor iniciado em:"
+        << std::endl;
+
+    std::cout
+        << "http://localhost:18080"
+        << std::endl;
+
+    app.port(18080)
+       .multithreaded()
+       .run();
 
     db.close();
+
     return 0;
 }
