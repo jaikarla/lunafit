@@ -1,0 +1,83 @@
+<script type="module" src="script.js"></script>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>LunaFit</title>
+
+    <!--font, links css-->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Karla:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="components/global.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <header class="header-section">
+            <div class="logo-container">
+                <img src="assets/logo-lunafit (sem fundo).png" alt="Logo LunaFit" class="logo-img">
+            </div>
+            <h1 class="brand-name"> LunaFit</h1>
+            <p class="tagline">
+                Movimento que respeita seu ritmo. Treinos personalizados para mulheres, 
+                em harmonia com seu ciclo e suas emoções.
+            </p>
+        </header>
+
+        <section class="features-container">
+            <article class="feature-card">
+                <div class="icon-box"><i data-lucide="moon"></i></div>
+                <div class="content">
+                    <h3>Sincronizado com seu ciclo</h3>
+                    <p>Treinos adaptados a cada fase hormonal – menstrual, folicular, ovulatória e lútea.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <div class="icon-box"><i data-lucide="heart-pulse"></i></div>
+                <div class="content">
+                    <h3>Check-in emocional</h3>
+                    <p>Recomendamos movimentos de acordo com seu humor e energia do dia.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <div class="icon-box"><i data-lucide="activity"></i></div>
+                <div class="content">
+                    <h3>Personalizado pra você</h3>
+                    <p>Considera seu nível, objetivo e restrições físicas em cada treino.</p>
+                </div>
+                
+
+            </article>
+
+            <article class="feature-card">
+                <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                <div class="content">
+                    <h3>Motivação que acolhe</h3>
+                    <p>Mensagens carinhosas que respeitam seu ritmo, todos os dias.</p>
+                </div>
+                
+            </article>
+        </section>
+
+        <footer class="action-footer">
+            <button id="btn-create" class="btn btn-primary">Criar conta</button>
+            <button id="btn-login" class="btn btn-secondary">Já tenho conta — Entrar</button>
+
+            <small class="footer-note">🌙 Lunafit • feito para você</small>
+
+        </footer>
+    </div>
+
+    <script>
+        lucide.createIcons({
+            attrs: {
+            'stroke-width': 1.5
+            }
+        });
+    </script>
+</body>
+</html>
