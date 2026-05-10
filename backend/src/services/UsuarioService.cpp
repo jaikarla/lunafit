@@ -1,10 +1,16 @@
 #include "UsuarioService.h"
 
-//definição do vetor estático para armazenar os usuários cadastrados
+//definindo do vetor estático para armazenar os usuários cadastrados
 std::vector<Usuario> UsuarioService::usuarios;
 
 void UsuarioService::criarUsuario(const Usuario& usuario) {
     usuarios.push_back(usuario);
+}
+
+//método para gerar um novo ID único para cada usuário criado
+int UsuarioService::gerarNovoId() {
+
+    return usuarios.size() + 1;
 }
 
 //método para listar todos os usuários cadastrados

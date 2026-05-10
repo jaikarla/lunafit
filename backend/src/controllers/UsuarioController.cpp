@@ -10,6 +10,8 @@ crow::response UsuarioController::criarUsuario(
     const crow::request& req
 ) {
 
+    std::cout << req.body << std::endl; //add para teste e conexão com frontend
+
     auto body = crow::json::load(req.body);
 
     if (!body) {
@@ -18,7 +20,7 @@ crow::response UsuarioController::criarUsuario(
 
     try {
 
-        int id = body["id"].i();
+        int id = UsuarioService::gerarNovoId();
         std::string nome = body["nome"].s();
         int idade = body["idade"].i();
         std::string email = body["email"].s();

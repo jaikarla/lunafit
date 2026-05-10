@@ -11,6 +11,8 @@ private:
 public:
     static void criarUsuario(const Usuario& usuario);
 
+    static int gerarNovoId();
+
     static std::vector<Usuario> listarUsuarios();
 
     static Usuario* buscarUsuarioPorId(int id);

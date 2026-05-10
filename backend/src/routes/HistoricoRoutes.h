@@ -1,11 +1,12 @@
 #pragma once
 
 #include "crow/app.h"
+#include "crow/middlewares/cors.h"
 
 #include "../controllers/HistoricoController.h"
 
 inline void registrarHistoricoRoutes(
-    crow::SimpleApp& app
+    crow::App<crow::CORSHandler>& app
 ) {
 
     CROW_ROUTE(

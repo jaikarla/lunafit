@@ -9,6 +9,8 @@
 #include "routes/TreinoRoutes.h"
 #include "routes/HistoricoRoutes.h"
 
+#include "crow/middlewares/cors.h" //inclui o middleware CORS para permitir conexões do frontend
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -48,7 +50,21 @@ int main() {
         << "Banco conectado com sucesso."
         << std::endl;
 
-    crow::SimpleApp app;
+    crow::App<crow::CORSHandler> app;
+
+    auto& cors = app.get_middleware<crow::CORSHandler>();
+
+    cors
+    .global()
+    .headers("Content-Type")
+    .methods(
+        "POST"_method,
+        "GET"_method,
+        "PUT"_method,
+        "DELETE"_method,
+        "OPTIONS"_method
+    )
+    .origin("*");
 
     registrarUsuarioRoutes(app);
 

@@ -1,11 +1,12 @@
 #pragma once
 
 #include "crow/app.h"
+#include "crow/middlewares/cors.h"
 
 #include "../controllers/TreinoController.h"
 
 inline void registrarTreinoRoutes(
-    crow::SimpleApp& app
+    crow::App<crow::CORSHandler>& app
 ) {
 
     CROW_ROUTE(
