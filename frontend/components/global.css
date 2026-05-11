@@ -10,6 +10,17 @@
     
     --font-main: 'Karla', sans-serif;
     --font-title: 'Cormorant Garamond', serif;
+    --font-sans: var(--font-main);
+    --font-serif: var(--font-title);
+    --color-purple: var(--primary-purple);
+    --color-pink: var(--primary-pink);
+    --color-orange: var(--accent-yellow);
+    --color-dark: #301e32;
+    --color-muted: #826f83;
+    --color-border: rgba(129, 4, 133, 0.16);
+    --color-panel-solid: #fff9fd;
+    --radius: 20px;
+    --shadow-soft: 0 14px 34px rgba(30, 1, 31, 0.13);
 }
 
 /* Reset e Base _____________________________________________*/
