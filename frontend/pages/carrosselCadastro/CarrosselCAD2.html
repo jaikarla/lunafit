@@ -1,0 +1,88 @@
+<!--Telas carrossel de cadastro-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <!--link css, favicon,..-->
+    <link rel="stylesheet" href="../../components/global.css">
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="CarrosselCAD2.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <main class="main-wrapper">
+        
+        <header class="onboarding-header">
+            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <h1 class="brand-name">Lunafit</h1>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill active"></div> 
+                <div class="progress-fill active"></div>
+                <div class="progress-fill"></div>
+                <div class="progress-fill"></div>
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <section class="onboarding-card">
+            <div class="card-header">
+                <h2>Qual seu nível?</h2>
+                <p>Vamos calibrar a intensidade dos treinos.</p>
+            </div>
+
+            <form class="onboarding-form">
+                <div class="level-options">
+                    
+                    <label class="level-card">
+                        <input type="radio" name="nivel" value="iniciante" checked>
+                        <div class="level-content">
+                            <span class="level-title">Iniciante</span>
+                            <span class="level-desc">Pouca ou nenhuma experiência</span>
+                        </div>
+                    </label>
+
+                    <label class="level-card">
+                        <input type="radio" name="nivel" value="intermediario">
+                        <div class="level-content">
+                            <span class="level-title">Intermediário</span>
+                            <span class="level-desc">Treino há alguns meses regularmente</span>
+                        </div>
+                    </label>
+
+                    <label class="level-card">
+                        <input type="radio" name="nivel" value="avancado">
+                        <div class="level-content">
+                            <span class="level-title">Avançado</span>
+                            <span class="level-desc">Treino há mais de 1 ano consistente</span>
+                        </div>
+                    </label>
+
+                </div>
+
+                <div class="button-container-between">
+                    <a href="CarrosselCAD1.html" class="btn-back">
+                        <i data-lucide="arrow-left" class="lucide-icon-fix"></i> Voltar
+                    </a>
+                    <a href="CarrosselCAD3.html" class="btn-next">
+                        Continuar <i data-lucide="arrow-right" class="lucide-icon-fix"></i>
+                    </a>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

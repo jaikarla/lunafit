@@ -1,0 +1,199 @@
+/* Style tela de Senha Recuperada */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-gradient);
+}
+
+/* 1 - Botão Voltar ____________________________________________*/
+.back-nav {
+    width: 100%;
+    max-width: 440px; 
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: var(--font-main) !important;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    transform: translateX(-3px);
+}
+
+/* 2 - Cabeçalho _________________________________________________*/
+.header-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 75px;
+    margin-bottom: 10px;
+}
+
+.brand-name {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 5px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* 3 - Card de Sucesso  ________________________________________*/
+.login-card {
+    background: #ffffff;
+    border-radius: 30px; 
+    padding: 45px 30px; 
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+/* 4 - Ícone de Check __________________________________________________*/
+.icon-circle {
+    
+    width: 85px ;
+    height: 85px ;
+    border-radius: 50%;
+    border: 2px solid #810485; 
+
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    
+    margin-bottom: 25px;
+}
+
+.icon-circle i {
+    color: #810485; 
+    display: flex; 
+}
+
+.icon-circle i svg {
+    width: 45px !important;  
+    height: 45px !important;
+    stroke-width: 1.5; 
+}
+
+.success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.check-icon {
+    color: #810485;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.check-icon svg {
+    width: 65px !important;
+    height: 65px !important;
+    stroke-width: 1.2px;   
+}
+
+/* 5 - Texto de Instrução ______________________________________________*/
+.instruction-text {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+/* 6 - Botão de Ação (Estilo Link/Botão) _____________________________________________*/
+.btn-primary-link {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #810485, #f06292, #ff8a65); 
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(129, 4, 133, 0.3);
+}
+/* 8 - Container Lucide ______________________________________________________*/
+.icon-container-lucide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 25px;
+    height: auto;
+}
+
+.icon-container-lucide svg {
+    width: 80px !important; 
+    height: 80px !important;
+    display: block;
+    stroke: #810485 !important; 
+}
+
+.icon-container-lucide i {
+    display: flex;
+}
+
+
+.icon-container-lucide i svg {
+    stroke-width: 1.2px; 
+}
+
+/* 8 - Rodapé ______________________________________________________*/
+.footer-note {
+    margin-top: 15px; 
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+    padding-bottom: 20px; 
+}
