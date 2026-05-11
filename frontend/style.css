@@ -1,3 +1,109 @@
+.app-page {
+  align-items: stretch;
+  justify-content: center;
+  color: var(--color-dark);
+}
+
+.app-shell {
+  width: 100%;
+}
+
+.screen {
+  width: min(100%, 430px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px 18px 104px;
+  color: var(--color-dark);
+}
+
+.screen--centered {
+  display: grid;
+  place-items: center;
+  padding-top: 24px;
+}
+
+.screen-title {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-soft);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-dark);
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: var(--color-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+button {
+  font: inherit;
+}
+
+.gradient-button,
+.outline-button {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gradient-button {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(155deg, var(--color-purple), var(--color-pink) 58%, var(--color-orange));
+  box-shadow: 0 12px 22px rgba(129, 4, 133, 0.24);
+}
+
+.outline-button {
+  border: 1px solid var(--color-border);
+  color: var(--color-purple);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.gradient-button:active,
+.outline-button:active,
+.choice-card:active,
+.exercise-item:active,
+.phase-option:active {
+  transform: scale(0.98);
+}
+
+.logo-mark {
+  object-fit: contain;
+}
+
 .bottom-nav {
   position: fixed;
   left: 50%;

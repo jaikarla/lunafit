@@ -1,1 +1,130 @@
 /* estilo tela de cadastro */
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+.back-nav {
+    width: 100%;
+    max-width: 440px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: var(--font-main) !important;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 75px;
+    margin-bottom: 10px;
+}
+
+.brand-name {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.signup-card {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 35px 30px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+    font-family: var(--font-main) !important;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-pink);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(240, 98, 146, 0.1);
+}
+
+#signup-form .btn-primary {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    background: var(--bg-gradient);
+    color: white;
+    border: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login-link-container {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+}
+
+.login-link-container a {
+    color: var(--primary-purple);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.footer-note {
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
+}

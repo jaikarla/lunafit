@@ -1,4 +1,7 @@
-class ProfileView extends BaseComponent {
+import { BaseComponent } from "../components/BaseComponent.js";
+import { BottomNav } from "../components/BottomNav.js";
+
+export class ProfileView extends BaseComponent {
   html() {
     const { usuario, ciclo } = this.app.state;
 

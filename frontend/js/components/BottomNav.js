@@ -1,4 +1,6 @@
-class BottomNav extends BaseComponent {
+import { BaseComponent } from "./BaseComponent.js";
+
+export class BottomNav extends BaseComponent {
   constructor(app, active) {
     super(app);
     this.active = active;

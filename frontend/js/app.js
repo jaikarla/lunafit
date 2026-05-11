@@ -1,3 +1,10 @@
+import { lunaFitData } from "./data/appData.js";
+import { HomeView } from "./views/HomeView.js";
+import { CycleView } from "./views/CycleView.js";
+import { WorkoutView } from "./views/WorkoutView.js";
+import { ProfileView } from "./views/ProfileView.js";
+import { CheckinView } from "./views/CheckinView.js";
+
 class LunaFitApp {
   constructor(root, state) {
     this.root = root;
@@ -38,6 +45,11 @@ class LunaFitApp {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const app = new LunaFitApp(document.getElementById("app"), lunaFitData);
+  const root = document.getElementById("app");
+  if (!root) {
+    return;
+  }
+
+  const app = new LunaFitApp(root, lunaFitData);
   app.render();
 });

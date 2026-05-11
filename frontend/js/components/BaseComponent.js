@@ -1,4 +1,4 @@
-class BaseComponent {
+export class BaseComponent {
   constructor(app) {
     this.app = app;
   }

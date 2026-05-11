@@ -1,4 +1,4 @@
-class Exercicio {
+export class Exercicio {
   constructor({ nome, descricao, duracao }) {
     this.nome = nome;
     this.descricao = descricao;
@@ -11,7 +11,7 @@ class Exercicio {
   }
 }
 
-class Treino {
+export class Treino {
   constructor({ titulo, foco, duracao, intensidade, frase, exercicios }) {
     this.titulo = titulo;
     this.foco = foco;

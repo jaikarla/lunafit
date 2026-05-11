@@ -1,4 +1,4 @@
-class CheckinDiario {
+export class CheckinDiario {
   constructor() {
     this.humor = null;
     this.disposicao = null;

@@ -1,4 +1,6 @@
-class CheckinHeader extends BaseComponent {
+import { BaseComponent } from "./BaseComponent.js";
+
+export class CheckinHeader extends BaseComponent {
   constructor(app, step) {
     super(app);
     this.step = step;

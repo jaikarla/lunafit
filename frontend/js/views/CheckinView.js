@@ -1,4 +1,7 @@
-class CheckinView extends BaseComponent {
+import { BaseComponent } from "../components/BaseComponent.js";
+import { CheckinHeader } from "../components/CheckinHeader.js";
+
+export class CheckinView extends BaseComponent {
   constructor(app, step) {
     super(app);
     this.step = step;

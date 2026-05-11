@@ -1,4 +1,7 @@
-class WorkoutView extends BaseComponent {
+import { BaseComponent } from "../components/BaseComponent.js";
+import { BottomNav } from "../components/BottomNav.js";
+
+export class WorkoutView extends BaseComponent {
   html() {
     const treino = this.app.state.treino;
 

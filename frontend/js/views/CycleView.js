@@ -1,4 +1,7 @@
-class CycleView extends BaseComponent {
+import { BaseComponent } from "../components/BaseComponent.js";
+import { BottomNav } from "../components/BottomNav.js";
+
+export class CycleView extends BaseComponent {
   html() {
     const { ciclo } = this.app.state;
     const moonClasses = {

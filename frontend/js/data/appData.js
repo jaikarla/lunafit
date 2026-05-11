@@ -1,6 +1,11 @@
-const lunaFitData = {
+import { Usuario } from "../models/Usuario.js";
+import { CicloMenstrual } from "../models/CicloMenstrual.js";
+import { Treino } from "../models/Treino.js";
+import { CheckinDiario } from "../models/CheckinDiario.js";
+
+export const lunaFitData = {
   usuario: new Usuario({
-    nome: "",
+    nome: "Luna",
     idade: 19,
     peso: "62 kg",
     altura: "162 cm",

@@ -1,4 +1,7 @@
-class HomeView extends BaseComponent {
+import { BaseComponent } from "../components/BaseComponent.js";
+import { BottomNav } from "../components/BottomNav.js";
+
+export class HomeView extends BaseComponent {
   html() {
     const { usuario, ciclo, treino, checkin } = this.app.state;
     const fase = ciclo.fase;
@@ -6,7 +9,7 @@ class HomeView extends BaseComponent {
     return `
       <section class="screen">
         <header class="home-header">
-          <img class="logo-mark" src="assets/logo-lunafit (sem fundo).png" alt="Logo LunaFit" />
+          <img class="logo-mark" src="../../assets/logo-lunafit (sem fundo).png" alt="Logo LunaFit" />
           <div>
             <p class="eyebrow">${this.app.dataFormatada}</p>
             <h1 class="title">Olá, ${usuario.primeiroNome}</h1>

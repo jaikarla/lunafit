@@ -1,4 +1,4 @@
-class FaseCiclo {
+export class FaseCiclo {
   constructor({ nome, dias, cor, emoji, descricao }) {
     this.nome = nome;
     this.dias = dias;
@@ -8,7 +8,7 @@ class FaseCiclo {
   }
 }
 
-class CicloMenstrual {
+export class CicloMenstrual {
   constructor({ faseAtual, diaAtual, proximaMenstruacao, ultimaMenstruacao, mediaDias, fases }) {
     this.faseAtual = faseAtual;
     this.diaAtual = diaAtual;
