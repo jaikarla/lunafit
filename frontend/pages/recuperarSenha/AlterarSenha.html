@@ -1,0 +1,60 @@
+<!--Tela de alterar Senha-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altera Senha</title>
+
+    <!--links css, favicon..-->
+    <link rel="stylesheet" href="AlteraSenha.css">
+    <link rel="stylesheet" href="../../components/global.css">
+
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <main class="main-wrapper">
+        
+        <nav class="back-nav">
+            <a href="../../index.html" class="btn-back">
+                <i data-lucide="arrow-left"></i> Voltar
+            </a>
+        </nav>
+
+        <header class="header-section">
+            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <h1 class="brand-name">Recuperar senha</h1>
+            <p class="tagline">Enviamos um link de verificação. Defina sua nova senha.</p>
+        </header>
+
+        <section class="login-card">
+            <form id="reset-password-form" action="../Login/login.html">
+                
+                <div class="input-group">
+                    <label for="new-password">Nova senha</label>
+                    <input type="password" id="new-password" placeholder="Mínimo 8 caracteres" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-new-password">Confirmar nova senha</label>
+                    <input type="password" id="confirm-new-password" placeholder="Repita a senha" required>
+                </div>
+
+                <a href="SenhaRecuperada.html" class="btn-primary" style="text-decoration: none; display: block; text-align: center;">
+                    Redefinir senha
+                </a>
+            </form>
+        </section>
+
+        <footer class="footer-note">
+            🌙 Lunafit • feito para você
+        </footer>
+
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
