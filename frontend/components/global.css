@@ -1,145 +1,60 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Karla:wght@400;500;600;700;800&display=swap");
-
+/* Definição de Variáveis Globais */
 :root {
-  --color-purple: #810485;
-  --color-pink: #f06292;
-  --color-orange: #ff8a65;
-  --color-dark: #1e011f;
-  --color-bg: #fff1f7;
-  --color-panel: rgba(255, 255, 255, 0.74);
-  --color-panel-solid: #fffaff;
-  --color-border: rgba(129, 4, 133, 0.12);
-  --color-muted: #8a748a;
-  --shadow-card: 0 18px 45px rgba(129, 4, 133, 0.12);
-  --shadow-soft: 0 10px 25px rgba(30, 1, 31, 0.08);
-  --radius: 16px;
-  --page-width: 380px;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: Karla, system-ui, sans-serif;
+    --bg-gradient: linear-gradient(135deg, #810485 0%, #f06292 60%, #ff8a65 100%);
+    --primary-purple: #810485;
+    --primary-pink: #f06292;
+    --accent-yellow: #ff8a65;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    
+    --font-main: 'Karla', sans-serif;
+    --font-title: 'Cormorant Garamond', serif;
 }
 
+/* Reset e Base */
 * {
-  box-sizing: border-box;
-}
-
-html {
-  min-height: 100%;
-  background: var(--color-bg);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  margin: 0;
-  color: var(--color-dark);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9), transparent 38rem),
-    linear-gradient(180deg, #fff8fc 0%, var(--color-bg) 48%, #fde8f1 100%);
+    font-family: var(--font-main) !important;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
 }
 
-button,
-input {
-  font: inherit;
+/* Tipografia */
+h1, h2, h3, h4, h5, .brand-name {
+    font-family: var(--font-title) !important;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
 }
 
-button {
-  border: 0;
-  cursor: pointer;
+body, p, span, small, button, .btn, .footer-note {
+    font-family: 'Karla', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
 }
 
-.app-shell {
-  min-height: 100vh;
+/* Ícones Lucide */
+.icon-box i {
+    width: 20px; 
+    height: 20px;
+    display: block;
+    stroke: #ffffff !important;
+    /* stroke-width definido via JS no final do HTML */
 }
 
-.screen {
-  width: min(100%, var(--page-width));
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 24px 16px 112px;
-}
-
-.screen--centered {
-  display: grid;
-  place-items: center;
-  width: min(100%, 540px);
-  padding-bottom: 24px;
-}
-
-.screen-title {
-  margin: 0 0 18px;
-}
-
-.eyebrow {
-  margin: 0 0 4px;
-  color: var(--color-muted);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-
-.title {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 1.05;
-}
-
-.subtitle {
-  margin: 4px 0 0;
-  color: var(--color-muted);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.card {
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.78);
-  border-radius: var(--radius);
-  background: var(--color-panel);
-  box-shadow: var(--shadow-card);
-  backdrop-filter: blur(16px);
-}
-
-.stack > * + * {
-  margin-top: 14px;
-}
-
-.gradient-button {
-  width: 100%;
-  min-height: 38px;
-  border-radius: 999px;
-  color: #fff;
-  font-weight: 800;
-  font-size: 12px;
-  background: linear-gradient(90deg, var(--color-purple), #c95dbb 48%, var(--color-orange));
-  box-shadow: 0 10px 18px rgba(240, 98, 146, 0.26);
-}
-
-.outline-button {
-  width: 100%;
-  min-height: 34px;
-  border: 1px solid rgba(129, 4, 133, 0.35);
-  border-radius: 999px;
-  color: var(--color-purple);
-  background: rgba(255, 255, 255, 0.62);
-  font-weight: 700;
-  font-size: 12px;
-}
-
-.logo-mark {
-  display: block;
-  object-fit: contain;
-}
-
-@media (max-width: 420px) {
-  .screen {
-    padding-inline: 14px;
-  }
-
-  .title {
-    font-size: 25px;
-  }
+.lucide {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
 }

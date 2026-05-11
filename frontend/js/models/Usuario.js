@@ -1,19 +1,12 @@
-class Usuario {
-  constructor({ nome, idade, peso, altura, objetivo, nivel, restricoes }) {
-    this.nome = nome;
-    this.idade = idade;
-    this.peso = peso;
-    this.altura = altura;
-    this.objetivo = objetivo;
-    this.nivel = nivel;
-    this.restricoes = restricoes;
-  }
+//entidade usuário 
 
-  get inicial() {
-    return this.nome.charAt(0).toUpperCase();
-  }
+export class Usuario {
+    constructor(nome, email) {
+        this.nome = nome;
+        this.email = email;
+    }
 
-  get primeiroNome() {
-    return this.nome.split(" ")[0];
-  }
+    autenticar() {
+        console.log(`${this.nome} está tentando logar...`);
+    }
 }

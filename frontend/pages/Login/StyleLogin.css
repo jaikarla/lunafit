@@ -1,1 +1,215 @@
 /* estilo de tela login */
+
+/* ___________________________________________________________
+   ESTILIZAÇÃO ESPECÍFICA DA TELA DE LOGIN
+   ___________________________________________________________ */
+
+
+
+/* Centralização de todo o conteúdo */
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px; 
+    background: var(--bg-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Botão Voltar (Posicionamento) __________________________________*/
+.back-nav {
+    width: 100%;
+    max-width: 440px; 
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: var(--font-main) !important;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    transform: translateX(-3px);
+}
+
+/* Cabeçalho ___________________________________________________*/
+.header-section {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+.logo-img {
+    width: 75px;
+    margin-bottom: 10px;
+}
+
+.brand-name {
+    font-size: 2rem; 
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Card de Login ___________________________________________________*/ 
+.login-card {
+    background: #ffffff;
+    border-radius: 30px; 
+    padding: 35px 30px; 
+    width: 100%;
+    max-width: 440px; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Link de recuperar senha com a cor correta ___________________________________*/
+.forgot-password {
+    align-self: flex-end;
+    font-size: 0.65rem;
+    color: var(--primary-purple);
+    font-weight: 600;
+    margin-top: 8px;
+    text-decoration: none;
+}
+
+/* Botão com Gradiente ______________________________*/
+#login-form .btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 25px;
+    background: linear-gradient(to right, #810485, #f06292, #ff8a65);
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* Rodapé do Login __________________________________________*/
+.login-footer p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.link-highlight {
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+/* Inputs e Labels ____________________________________________*/
+.input-group {
+    margin-bottom: 15px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 18px; 
+    border-radius: 14px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+    font-family: var(--font-main) !important;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-pink);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(240, 98, 146, 0.1);
+}
+
+/* 4 - Links Auxiliares _________________________________________*/
+.forgot-password {
+    align-self: flex-end;
+    font-size: 0.65rem;
+    color: var(--primary-purple);
+    font-weight: 700;
+    margin-top: 5px;
+    text-decoration: none;
+}
+
+.login-footer p {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 15px;
+}
+
+.link-highlight {
+    color: var(--text-light);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* 5 - Ajuste do Botão de Entrar ________________________________________*/
+#login-form .btn-primary {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    background: var(--bg-gradient);
+    color: white;
+    border: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#login-form .btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+/* Estilo do link de cadastro DENTRO do card _______________________________*/
+.signup-link-container {
+    margin-top: 25px; 
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+}
+
+.signup-link-container a {
+    color: var(--primary-purple);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.signup-link-container a:hover {
+    text-decoration: underline;
+}
+
+/* Rodapé Final ________________________________________*/
+.footer-note {
+    margin-top: 15px; 
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+    padding-bottom: 20px; 
+}
