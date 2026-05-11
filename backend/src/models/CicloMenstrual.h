@@ -8,7 +8,13 @@ private:
     int duracaoMediaCiclo;
 
 public:
+    //CicloMenstrual(); //para fins de teste e criação de objetos temporários sem parâmetros
+
     CicloMenstrual(int diaUltimaMenstruacao, int duracaoMediaCiclo);
 
     std::string calcularFaseAtual(int diaAtual) const;
+
+    int getDiaUltimaMenstruacao() const;
+
+    int getDuracaoMediaCiclo() const;
 };
