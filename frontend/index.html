@@ -64,7 +64,9 @@
 
         <footer class="action-footer">
             
-            <button id="btn-create" class="btn btn-primary">Criar conta</button>
+            <form action="pages/cadastro_1/cadastro.html">
+                <button id="btn-create" class="btn btn-primary">Criar conta</button>
+            </form>
             
             <form id="login-form" action="pages/Login/login.html">
                 <button id="btn-login" class="btn btn-secondary">Já tenho conta — Entrar</button>
@@ -82,6 +84,7 @@
             }
         });
     </script>
-    <script type="module" src="script.js"></script>
+
+    <script type="module" src="script.js"></script> <!-- #esta linha estava como primeira linha do código, mas a coloquei aqui para que eu consiga acessar uma página de cadastro -->
 </body>
 </html>

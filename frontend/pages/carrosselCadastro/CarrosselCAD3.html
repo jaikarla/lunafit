@@ -1,0 +1,82 @@
+<!--Telas carrossel de cadastro-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <!--link css, favicon,..-->
+    <link rel="stylesheet" href="../../components/global.css">
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="CarrosselCAD3.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <main class="main-wrapper">
+        
+        <header class="onboarding-header">
+            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <h1 class="brand-name">Lunafit</h1>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill active"></div> 
+                <div class="progress-fill active"></div>
+                <div class="progress-fill active"></div>
+                <div class="progress-fill"></div>
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <section class="onboarding-card">
+            <div class="card-header">
+                <h2>Qual seu objetivo?</h2>
+                <p>Pode ajustar depois quando quiser.</p>
+            </div>
+
+            <form class="onboarding-form">
+                <div class="goal-grid">
+                    
+                    <label class="goal-card">
+                        <input type="radio" name="objetivo" value="fortalecimento" checked>
+                        <div class="goal-content">
+                            <span class="goal-emoji">💪</span>
+                            <span class="goal-title">Fortalecimento</span>
+                            <span class="goal-desc">Ganhar força e disposição</span>
+                        </div>
+                    </label>
+
+                    <label class="goal-card">
+                        <input type="radio" name="objetivo" value="saude-mental">
+                        <div class="goal-content">
+                            <span class="goal-emoji">🌿</span>
+                            <span class="goal-title">Saúde mental</span>
+                            <span class="goal-desc">Bem-estar e equilíbrio</span>
+                        </div>
+                    </label>
+
+                </div>
+
+                <div class="button-container-between">
+                    <a href="CarrosselCAD2.html" class="btn-back">
+                        <i data-lucide="arrow-left" class="lucide-icon-fix"></i> Voltar
+                    </a>
+                    <a href="CarrosselCAD4.html" class="btn-next">
+                        Continuar <i data-lucide="arrow-right" class="lucide-icon-fix"></i>
+                    </a>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

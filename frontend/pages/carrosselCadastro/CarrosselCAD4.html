@@ -1,0 +1,91 @@
+<!--Telas carrossel de cadastro-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <!--link css, favicon,..-->
+    <link rel="stylesheet" href="../../components/global.css">
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="CarrosselCAD4.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <main class="main-wrapper">
+        
+        <header class="onboarding-header">
+            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <h1 class="brand-name">Lunafit</h1>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill active"></div> 
+                <div class="progress-fill active"></div>
+                <div class="progress-fill active"></div>
+                <div class="progress-fill active"></div>
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <section class="onboarding-card">
+            <div class="card-header">
+                <h2>Alguma restrição?</h2>
+                <p>Selecione áreas a evitar (opcional).</p>
+            </div>
+
+            <form class="onboarding-form">
+                <div class="tags-container">
+                    
+                    <label class="tag-item">
+                        <input type="checkbox" name="restricao" value="joelho">
+                        <span class="tag-label">Joelho</span>
+                    </label>
+
+                    <label class="tag-item">
+                        <input type="checkbox" name="restricao" value="lombar">
+                        <span class="tag-label">Lombar</span>
+                    </label>
+
+                    <label class="tag-item">
+                        <input type="checkbox" name="restricao" value="ombro">
+                        <span class="tag-label">Ombro</span>
+                    </label>
+
+                    <label class="tag-item">
+                        <input type="checkbox" name="restricao" value="punho">
+                        <span class="tag-label">Punho</span>
+                    </label>
+
+                    <label class="tag-item">
+                        <input type="checkbox" name="restricao" value="tornozelo">
+                        <span class="tag-label">Tornozelo</span>
+                    </label>
+
+                </div>
+
+                <p class="helper-text">Vamos adaptar os exercícios respeitando seus limites.</p>
+
+                <div class="button-container-between">
+                    <a href="CarrosselCAD3.html" class="btn-back">
+                        <i data-lucide="arrow-left" class="lucide-icon-fix"></i> Voltar
+                    </a>
+                    <a href="CarrosselCAD5.html" class="btn-next">
+                        Continuar <i data-lucide="arrow-right" class="lucide-icon-fix"></i>
+                    </a>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

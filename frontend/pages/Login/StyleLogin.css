@@ -155,6 +155,12 @@
     text-decoration: none;
 }
 
+.forgot-password:hover {
+    text-decoration: underline !important; /* Força o sublinhado a aparecer */
+    color: #f06292; /* Opcional: muda para o rosa do seu gradiente ao focar */
+    cursor: pointer;
+}
+
 .login-footer p {
     font-size: 0.7rem;
     color: var(--text-light);
@@ -213,3 +219,4 @@
     text-align: center;
     padding-bottom: 20px; 
 }
+

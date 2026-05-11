@@ -1,0 +1,146 @@
+/* style tela Recuperar Senha */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* Reset e Suavização ____________________________________________*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 1 - Estrutura Principal ___________________________________________*/
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-gradient);
+}
+
+/* 2 - Botão Voltar _____________________________________________________*/
+.back-nav {
+    width: 100%;
+    max-width: 440px; 
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: var(--font-main) !important;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    transform: translateX(-3px);
+}
+
+/* 3 - Cabeçalho (Logo e Textos) ______________________________________*/
+.header-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 75px; 
+    margin-bottom: 10px;
+}
+
+.brand-name {
+    font-size: 1.8rem; 
+    color: white;
+    margin-bottom: 5px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* 4 - Card de Recuperação (Versão para PC) ____________________________*/
+.login-card {
+    background: #ffffff;
+    border-radius: 30px; 
+    padding: 35px 30px; 
+    width: 100%;
+    max-width: 420px; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* 5 - Grupo de Entrada ______________________________________________*/
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    margin-left: 2px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 18px; 
+    border-radius: 15px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #f06292; 
+}
+
+.input-group input::placeholder {
+    color: #bbb;
+    font-weight: 300;
+}
+
+/* 6 - Botão de Envio ______________________________________*/
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #810485, #f06292, #ff8a65); 
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(240, 98, 146, 0.4);
+}
+
+/* 7 - Rodapé ______________________________________________*/
+.footer-note {
+    margin-top: 15px; 
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+    padding-bottom: 20px; 
+}

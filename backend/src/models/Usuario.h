@@ -31,6 +31,12 @@ public:
         const PerfilFisico& novoPerfil
     );
 
+    int getId() const;
+
+    int getIdade() const;
+
+    std::string getEmail() const;
+
     std::string getNome() const;
 
     PerfilFisico getPerfilFisico() const;
@@ -38,4 +44,5 @@ public:
     CicloMenstrual getCicloMenstrual() const;
 
     HistoricoTreinoDiario& getHistorico();
+
 };
