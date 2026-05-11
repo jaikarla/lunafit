@@ -1,4 +1,6 @@
 #este arquivo é para marcar os arquivos do sqlite como "vendored" para o GitHub Linguist, evitando que sejam contados como parte do código-fonte principal do projeto, pois ele acaba dominando as estatísticas.
 
+#linha de commit para recalcular as estatísticas do GitHub Linguist
+
 src/database/sqlite/sqlite3.c linguist-vendored
 src/database/sqlite/sqlite3.h linguist-vendored
