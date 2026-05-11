@@ -25,6 +25,11 @@ crow::response UsuarioController::criarUsuario(
         int idade = body["idade"].i();
         std::string email = body["email"].s();
 
+        std::string senha = body["senha"].s();
+
+        double peso = body["peso"].d();
+        double altura = body["altura"].d();
+
         auto perfilJson = body["perfilFisico"];
 
         std::string objetivo = perfilJson["objetivo"].s();
@@ -61,8 +66,11 @@ crow::response UsuarioController::criarUsuario(
         Usuario usuario(
             id,
             idade,
-            email,
             nome,
+            email,
+            senha, 
+            peso,
+            altura,
             perfilFisico,
             cicloMenstrual
         );
@@ -111,6 +119,8 @@ crow::response UsuarioController::listarUsuarios() {
         u["nome"] = usuario.getNome();
         u["idade"] = usuario.getIdade();
         u["email"] = usuario.getEmail();
+        u["peso"] = usuario.getPeso();
+        u["altura"] = usuario.getAltura();
 
         auto perfil =
             usuario.getPerfilFisico();
@@ -171,6 +181,8 @@ crow::response UsuarioController::buscarUsuario(
     resposta["nome"] = usuario->getNome();
     resposta["idade"] = usuario->getIdade();
     resposta["email"] = usuario->getEmail();
+    resposta["peso"] = usuario->getPeso();
+    resposta["altura"] = usuario->getAltura();
 
     return crow::response(200, resposta);
 }
@@ -192,6 +204,9 @@ crow::response UsuarioController::atualizarUsuario(
         std::string nome = body["nome"].s();
         int idade = body["idade"].i();
         std::string email = body["email"].s();
+        std::string senha = body["senha"].s();
+        double peso = body["peso"].d();
+        double altura = body["altura"].d();
 
         auto perfilJson = body["perfilFisico"];
 
@@ -233,8 +248,11 @@ crow::response UsuarioController::atualizarUsuario(
         Usuario usuarioAtualizado(
             id,
             idade,
-            email,
             nome,
+            email,
+            senha,
+            peso,
+            altura,
             perfilFisico,
             cicloMenstrual
         );

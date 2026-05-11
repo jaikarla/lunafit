@@ -3,15 +3,21 @@
 Usuario::Usuario(
     int id,
     int idade,
-    std::string email,
     std::string nome,
+    std::string email,
+    std::string senha,
+    double peso,
+    double altura,
     PerfilFisico perfilFisico,
     CicloMenstrual cicloMenstrual
 )
     : id(id),
       idade(idade),
-      email(email),
       nome(nome),
+      email(email),
+     senha(senha),
+      peso(peso),
+      altura(altura),
       perfilFisico(perfilFisico),
       cicloMenstrual(cicloMenstrual) {}
 
@@ -29,12 +35,24 @@ int Usuario::getIdade() const {
     return idade;
 }
 
+std::string Usuario::getNome() const {
+    return nome;
+}
+
 std::string Usuario::getEmail() const {
     return email;
 }
 
-std::string Usuario::getNome() const {
-    return nome;
+std::string Usuario::getSenha() const {
+    return senha;
+}
+
+double Usuario::getPeso() const {
+    return peso;
+}
+
+double Usuario::getAltura() const {
+    return altura;
 }
 
 PerfilFisico Usuario::getPerfilFisico() const {
