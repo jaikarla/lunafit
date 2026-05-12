@@ -112,7 +112,27 @@ export class WorkoutView extends BaseComponent {
               usuarioId:
                 Number(usuarioId),
 
-              objetivo,
+              faseCiclo:
+                this.app.state.ciclo.faseAtual,
+
+              objetivo:
+                this.app.state.usuario.objetivo === "saude-mental"
+                  ? "bem_estar"
+                  : "fortalecimento",
+
+              restricaoFisica:
+                this.app.state.usuario.restricoes === "Nenhuma"
+                  ? "nenhuma"
+                  : this.app.state.usuario.restricoes
+                      .split(",")[0]
+                      .trim()
+                      .toLowerCase(),
+
+              intensidade: "moderado",
+
+              nivelExperiencia:
+                this.app.state.usuario.nivel
+                  .toLowerCase(),
 
               disposicao: 7,
 

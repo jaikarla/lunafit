@@ -19,6 +19,8 @@
 #include <algorithm>
 #include <cctype>
 
+#include <iostream> //para debug
+
 //controlador para recomendar um plano de treino diário personalizado com base na fase do ciclo menstrual, perfil físico, estado do usuário
 crow::response TreinoController::recomendarTreino(
     const crow::request& req
@@ -79,7 +81,7 @@ crow::response TreinoController::recomendarTreino(
 
                 estado,
 
-                "moderado",
+                "leve",
 
                 0
             );
@@ -128,14 +130,18 @@ crow::response TreinoController::recomendarTreino(
                 );
         }
 
+        //conecta ao banco e gera o treino para o teste
         Database db;
 
-        std::string treino =
-            recomendador
-                .obterRecomendacaoDiaria(
-                    dados,
-                    db
-                );
+            db.connect("lunafit.db");
+
+            std::string treino =
+                recomendador
+                    .obterRecomendacaoDiaria(
+                        dados,
+                        db
+                    );
+        //fecha a conexão com o banco
 
         crow::json::wvalue resposta;
 
@@ -150,11 +156,16 @@ crow::response TreinoController::recomendarTreino(
             resposta
         );
 
-    } catch (...) {
+    } catch (const std::exception& e) {
+
+        std::cerr
+            << "Erro ao gerar treino: "
+            << e.what()
+            << std::endl;
 
         return crow::response(
             500,
-            "Erro ao gerar treino"
+            e.what()
         );
-    }
+}
 }
