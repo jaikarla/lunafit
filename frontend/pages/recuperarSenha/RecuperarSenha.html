@@ -1,0 +1,53 @@
+<!--Tela de Recuperar Senha-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+
+    <!--Links css, favicon..-->
+    <link rel="stylesheet" href="../../components/global.css">
+    <link rel="stylesheet" href="RecuperarSenha.css">
+
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <main class="main-wrapper">
+        
+        <nav class="back-nav">
+            <a href="../../index.html" class="btn-back">
+                <i data-lucide="arrow-left"></i> Voltar
+            </a>
+        </nav>
+
+        <header class="header-section">
+            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <h1 class="brand-name">Recuperar senha</h1>
+            <p class="tagline">Informe o e-mail cadastrado para continuar.</p>
+        </header>
+
+        <section class="login-card">
+            <form id="recovery-form">
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Enviar link de recuperação</button>
+            </form>
+        </section>
+
+        <footer class="footer-note">
+            🌙 Lunafit • feito para você
+        </footer>
+
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

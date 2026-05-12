@@ -1,0 +1,207 @@
+/* styles de carrossel de cadastro */
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap');
+
+/* 1 - Base __________________________________________________*/
+body {
+    background: none !important; 
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-gradient); 
+    background-attachment: fixed;
+}
+
+/* 2 - Cabeçalho e Progresso __________________________________________*/
+.onboarding-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.onboarding-header .logo-img {
+    width: 75px;
+    margin-bottom: 5px;
+}
+
+.onboarding-header .brand-name {
+    color: white;
+    font-size: 1.6rem;
+    font-family: 'Cormorant Garamond', serif !important;
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 420px;
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.progress-fill {
+    height: 4px;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+}
+
+.progress-fill.active {
+    background: white; 
+}
+
+/* 3 - Card de Onboarding ____________________________________________*/
+.onboarding-card {
+    background: white;
+    border-radius: 35px; 
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.card-header h2 {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.card-header p {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* 4 - Seleção de Nível _____________________________________________________*/
+.level-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.level-card {
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.level-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.level-content {
+    background: #ffffff;
+    border: 2px solid #eee;
+    padding: 15px 20px;
+    border-radius: 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.level-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+
+.level-desc {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* ESTADO SELECIONADO: Quando o input estiver checado, estiliza o level-content */
+.level-card input:checked + .level-content {
+    background: rgba(129, 4, 133, 0.08); 
+    border-color: #810485; 
+}
+
+.level-card input:checked + .level-content .level-title {
+    color: #810485;
+}
+
+/* 5 - Botões de Navegação ______________________________________________*/
+.button-container-between {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-back {
+    text-decoration: none !important; 
+    background: none;
+    border: none;
+    color: #777 !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-family: 'Karla', sans-serif !important;
+}
+
+.btn-back:hover {
+    color: #333 !important;
+}
+
+.btn-next {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important; /* Mata o sublinhado */
+    
+    background: linear-gradient(to right, #810485, #f06292, #ff8a65);
+    color: white !important;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-family: 'Karla', sans-serif !important;
+}
+
+.btn-next:hover {
+    transform: scale(1.05);
+    color: white !important;
+}
+
+/* 6 - Ícones Lucide fix ___________________________________________*/
+.lucide-icon-fix {
+    width: 18px !important;
+    height: 18px !important;
+    stroke-width: 2px;
+    display: block;
+}
+
+/* 7 - Animações ________________________________________________________*/
+.level-card input:checked + .level-content,
+.goal-card input:checked + .goal-content,
+.tag-item input:checked + .tag-label {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(129, 4, 133, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
+}

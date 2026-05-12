@@ -1,81 +1,74 @@
+<<<<<<< HEAD
+=======
 <!--html tela cadastro 1-->
 
+>>>>>>> 041143b964765d8f679903aa00341d941c209679
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
 
-    <title>Cadastro - LunaFit</title>
+    <!--links, css, favicon-->
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="StyleCadastro.css">
+    <link rel="stylesheet" href="../../components/global.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Karla:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-
 <body>
+    <main class="main-wrapper">
+        
+        <nav class="back-nav">
+            <a href="../../index.html" class="btn-back">
+                <i data-lucide="arrow-left"></i> Voltar
+            </a>
+        </nav>
 
-    <div class="container">
+        <header class="header-section">
+            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <h1 class="brand-name">Crie sua conta</h1>
+            <p class="tagline">Em seguida vamos personalizar sua jornada.</p>
+        </header>
 
-        <h1>Cadastro LunaFit</h1>
+        <section class="login-card">
+            <form id="register-form" action="../Home/index.html">
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
 
-        <form id="cadastro-form">
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Mínimo 6 caracteres" required>
+                </div>
 
-            <input
-                type="text"
-                id="nome"
-                placeholder="Nome"
-                required
-            >
+                <div class="input-group">
+                    <label for="confirm-password">Confirmar senha</label>
+                    <input type="password" id="confirm-password" placeholder="Repita a senha" required>
+                </div>
 
-            <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                required
-            >
+                <a href="../carrosselCadastro/CarrosselCAD1.html" class="btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                    Continuar cadastro
+                </a>
+            </form>
 
-            <input
-                type="number"
-                id="idade"
-                placeholder="Idade"
-                required
-            >
+            <div class="signup-link-container">
+                Já tem conta? <a href="../Login/login.html">Entrar</a>
+            </div>
+        </section>
 
-            <input
-                type="text"
-                id="objetivo"
-                placeholder="Objetivo"
-                required
-            >
+        <footer class="footer-note">
+            🌙 Lunafit • feito para você
+        </footer>
 
-            <input
-                type="text"
-                id="nivel"
-                placeholder="Nível"
-                required
-            >
+    </main>
 
-            <input
-                type="number"
-                id="dia"
-                placeholder="Dia última menstruação"
-                required
-            >
-
-            <input
-                type="number"
-                id="duracao"
-                placeholder="Duração ciclo"
-                required
-            >
-
-            <button type="submit">
-                Criar conta
-            </button>
-
-        </form>
-
-    </div>
-
-    <script type="module" src="cadastro.js"></script>
-
+    <script>lucide.createIcons();</script>
 </body>
 </html>

@@ -1,1 +1,159 @@
 /* estilo tela de cadastro */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* Aplicar suavização de fonte global ____________________________________*/
+* {
+    font-family: 'Inter', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 1 - Estrutura Principal _________________________________________________*/
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-gradient); 
+    overflow: hidden;
+}
+
+/* 2 - Navegação (Botão Voltar) ______________________________________________*/
+.back-nav {
+    width: 100%;
+    max-width: 440px; 
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: var(--font-main) !important;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    transform: translateX(-3px);
+}
+
+/* 3 - Cabeçalho ___________________________________________________*/
+.header-section {
+    text-align: center;
+    margin-bottom: 15px;  /*15px */
+}
+
+.logo-img {
+    width: 75px; 
+    margin-bottom: 0px; /*0px*/
+}
+
+.brand-name {
+    font-size: 1.8rem; 
+    color: white;
+    margin-bottom: 4px;
+    font-weight: 400; 
+    letter-spacing: -0.5px; 
+}
+
+.tagline {
+    font-size: 0.85rem;
+    font-weight: 300; 
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* 4 - Card de Cadastro _____________________________________________*/
+.login-card {
+    background: #ffffff;
+    border-radius: 35px; 
+    padding: 40px 35px; 
+    width: 100%;
+    max-width: 440px; 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 5 - Inputs e Labels ______________________________________________*/
+.input-group {
+    margin-bottom: 15px; /*15px*/
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 18px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #444;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input-group input::placeholder {
+    color: #bbb;
+    font-weight: 300;
+}
+
+/* 6 - Botão de Ação ______________________________________________*/
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    border-radius: 35px;
+    background: linear-gradient(to right, #810485, #f06292, #ff8a65); 
+    color: white;
+    border: none;
+    font-weight: 600; 
+    font-size: 0.95rem;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+}
+
+/* 7 - Link Inferior (Já tem conta?) _______________________________________*/
+.signup-link-container {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #666;
+    text-align: center;
+}
+
+.signup-link-container a {
+    color: var(--primary-purple);
+    font-weight: 600; 
+    text-decoration: none;
+}
+
+/* 8 - Rodapé com Margem de Respiro _____________________________________*/
+.footer-note {
+    margin-top: 10px; /* 10px */
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+}
+

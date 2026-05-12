@@ -1,0 +1,142 @@
+/* Style de Alterar Senha */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-gradient);
+}
+
+/* 1 - Botão Voltar __________________________________________*/
+.back-nav {
+    width: 100%;
+    max-width: 440px; 
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: var(--font-main) !important;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    transform: translateX(-3px);
+}
+
+/* 2 - Cabeçalho ____________________________________________*/
+.header-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 75px;
+    margin-bottom: 10px;
+}
+
+.brand-name {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 5px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 300px; 
+    margin: 0 auto;
+}
+
+/* 3 - Card de Redefinição ___________________________________*/
+.login-card {
+    background: #ffffff;
+    border-radius: 30px; 
+    padding: 35px 30px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* 4 - Grupo de Entrada (Nova senha e Confirmar) ______________________________*/
+.input-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    margin-left: 2px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: #bbb;
+    font-weight: 300;
+}
+
+/* 5 - Botão de Redefinir ____________________________________*/
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #810485, #f06292, #ff8a65); 
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+}
+
+/* 6 - Rodapé ________________________________________________*/
+.footer-note {
+    margin-top: 15px; 
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+    padding-bottom: 20px; 
+}

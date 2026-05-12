@@ -1,0 +1,190 @@
+/* styles de carrossel de cadastro */
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap');
+
+/* 1 - Base e Wrapper ________________________________________*/
+body {
+    background: none !important; 
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-gradient); 
+    background-attachment: fixed;
+}
+
+/* 2 - Cabeçalho e Progresso __________________________________*/
+.onboarding-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.onboarding-header .logo-img {
+    width: 75px;
+    margin-bottom: 5px;
+}
+
+.onboarding-header .brand-name {
+    color: white;
+    font-size: 1.6rem;
+    font-family: 'Cormorant Garamond', serif !important;
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 420px;
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.progress-fill {
+    height: 4px;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+}
+
+.progress-fill.active {
+    background: white; 
+}
+
+/* 3 - Card de Onboarding _______________________________________*/
+.onboarding-card {
+    background: white;
+    border-radius: 35px; 
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.card-header p {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* 4 - Tags de Seleção (Checkboxes) _______________________________________*/
+.tags-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tag-item {
+    cursor: pointer;
+    position: relative;
+}
+
+.tag-item input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tag-label {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #f8f9fa; 
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+/* Estado de Hover */
+.tag-item:hover .tag-label {
+    background: #f0f0f0;
+}
+
+/* Estado SELECIONADO (Checked) */
+.tag-item input:checked + .tag-label {
+    background: rgba(129, 4, 133, 0.1); 
+    color: #810485;
+    border: 1px solid #810485;
+}
+
+.helper-text {
+    font-size: 0.75rem;
+    color: #999;
+    font-style: italic;
+    margin-bottom: 30px;
+    display: block;
+}
+
+/* 5 - Navegação (Blindada) _________________________________________*/
+.button-container-between {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-back {
+    text-decoration: none !important;
+    color: #777 !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-next {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    background: linear-gradient(to right, #810485, #f06292, #ff8a65);
+    color: white !important;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    gap: 8px;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-next:hover {
+    transform: scale(1.05);
+}
+
+.lucide-icon-fix {
+    width: 18px !important;
+    height: 18px !important;
+    stroke-width: 2px;
+}
+
+/* 6 - Animações ________________________________________________________*/
+.level-card input:checked + .level-content,
+.goal-card input:checked + .goal-content,
+.tag-item input:checked + .tag-label {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(129, 4, 133, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
+}
