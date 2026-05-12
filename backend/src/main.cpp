@@ -66,11 +66,11 @@ int main() {
     )
     .origin("*");
 
-    registrarUsuarioRoutes(app);
+    registrarUsuarioRoutes(app, db);
 
-    registrarTreinoRoutes(app);
+    registrarTreinoRoutes(app, db);
 
-    registrarHistoricoRoutes(app);
+    registrarHistoricoRoutes(app, db);
 
     std::cout
         << "Servidor iniciado em:"

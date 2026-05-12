@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS plano_treinos (
 CREATE TABLE IF NOT EXISTS historico_treino_diario (
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id          INTEGER NOT NULL,
-    treino_id        INTEGER NOT NULL,
+    treino_id        INTEGER,
     data             TEXT    DEFAULT (datetime('now')),
     nivel_disposicao TEXT CHECK(nivel_disposicao IN ('baixa', 'media', 'alta')),
     como_se_sentiu   TEXT,

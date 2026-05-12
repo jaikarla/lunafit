@@ -9,10 +9,11 @@
 
 #include "../models/EstadoUsuario.h"
 
-#include "../database/Database.h"
+#include "../database/database.h"
 
 //controlador para recomendar um plano de treino diário personalizado com base na fase do ciclo menstrual, perfil físico, estado do usuário
 crow::response TreinoController::recomendarTreino(
+    Database& db,
     const crow::request& req
 ) {
 
@@ -101,7 +102,6 @@ crow::response TreinoController::recomendarTreino(
                 );
         }
 
-        Database db;
 
         std::string treino =
             recomendador

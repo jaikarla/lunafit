@@ -1,26 +1,39 @@
 #pragma once
 
 #include "../models/Usuario.h"
-
+#include "../database/database.h"
 #include <vector>
 
 class UsuarioService {
-private:
-    static std::vector<Usuario> usuarios;
-
 public:
-    static void criarUsuario(const Usuario& usuario);
-
-    static int gerarNovoId();
-
-    static std::vector<Usuario> listarUsuarios();
-
-    static Usuario* buscarUsuarioPorId(int id);
-
-    static bool atualizarUsuario(
-    int id,
-    const Usuario& usuarioAtualizado
+    static void criarUsuario(
+        Database& db,
+        const Usuario& usuario
     );
 
-    static bool deletarUsuario(int id);
+    static int gerarNovoId(Database& db);
+
+    static std::vector<Usuario> listarUsuarios(
+        Database& db
+    );
+
+    static Usuario* buscarUsuarioPorId(
+        Database& db,
+        int id
+    );
+
+    static bool atualizarUsuario(
+        Database& db,
+        int id,
+        const Usuario& usuarioAtualizado
+    );
+
+    static bool deletarUsuario(
+        Database& db,
+        int id
+    );
+
+private:
+    static std::vector<Usuario> usuarios;
+    static Usuario usuarioCache;
 };
