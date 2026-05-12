@@ -25,8 +25,8 @@ form.addEventListener("submit", (event) => {
     // O backend vai precisar desse email no JSON final lá na Tela 5.____________________
     localStorage.setItem('cad_email', email);
     
-   
-    // localStorage.setItem('cad_senha', password);
+    //guardamos a senha (localStorage) para o backend pegar depois.____________________
+    localStorage.setItem('cad_senha', password);
 
     console.log("Email guardado:", email);
 

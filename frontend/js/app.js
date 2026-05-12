@@ -1,4 +1,5 @@
-import { lunaFitData } from "./data/appData.js";
+//import { lunaFitData } from "./data/appData.js";
+//removido para poder enviar os dados reais
 import { HomeView } from "./views/HomeView.js";
 import { CycleView } from "./views/CycleView.js";
 import { WorkoutView } from "./views/WorkoutView.js";
@@ -37,19 +38,172 @@ class LunaFitApp {
     return views[this.currentView] || views.home;
   }
 
+
+  //para carregar o usuario e não dar erro em usuario undefined
+  //carrega os dados reais da usuária vindos do backend
+  async carregarUsuario(usuarioId) {
+
+  const response = await fetch(
+    `http://127.0.0.1:18080/usuarios/${usuarioId}`
+  );
+
+  //converte resposta para JSON
+  const usuario = await response.json();
+
+  return usuario;
+  }
+
   render() {
     const view = this.getView();
     this.root.innerHTML = view.html();
     view.afterRender();
   }
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const root = document.getElementById("app");
-  if (!root) {
-    return;
-  }
+//enviando dados reais do backend para o app
+document.addEventListener("DOMContentLoaded",
 
-  const app = new LunaFitApp(root, lunaFitData);
-  app.render();
+  async () => {
+    const root = document.getElementById("app");
+
+    if (!root) {
+      return;
+    }
+
+    // pega ID salvo após cadastro
+    const usuarioId = localStorage.getItem("usuario_id");
+
+    if (!usuarioId) {
+      alert("Usuária não encontrada.");
+
+      window.location.href = "../cadastro_1/cadastro.html";
+
+      return;
+    }
+
+    try {
+
+      //cria instância temporária do app
+      const appTemp = new LunaFitApp(root, {});
+
+      //busca dados reais da usuária
+      const usuarioBackend = 
+        await appTemp.carregarUsuario(
+          usuarioId
+        );
+
+      //converte dados backend para formato esperado pelo app
+      const estadoApp = {
+
+        usuario: {
+
+          nome: usuarioBackend.nome,
+          primeiroNome: usuarioBackend.nome.split(" ")[0],
+          inicial: usuarioBackend.nome.charAt(0),
+          idade: usuarioBackend.idade,
+          peso: usuarioBackend.peso,
+          altura: usuarioBackend.altura,
+          objetivo: usuarioBackend.perfilFisico.objetivo,
+          nivel: usuarioBackend
+              .perfilFisico
+              .nivelExperiencia,
+          //considera que restrições podem também não existir
+          restricoes: usuarioBackend
+              .perfilFisico
+              .restricoesFisicas?.length
+
+              ? usuarioBackend
+                  .perfilFisico
+                  .restricoesFisicas
+                  .join(", ")
+
+              : "Nenhuma"
+        },
+
+        ciclo: {
+
+          faseAtual: "Folicular",
+
+          diaAtual: usuarioBackend
+              .cicloMenstrual
+              .diaUltimaMenstruacao,
+
+          mediaDias: usuarioBackend
+              .cicloMenstrual
+              .duracaoMediaCiclo,
+
+          ultimaMenstruacao: usuarioBackend
+              .cicloMenstrual
+              .diaUltimaMenstruacao,
+
+          proximaMenstruacao:
+            "Em breve",
+
+          fase: {
+            emoji: "🌙",
+            descricao:
+              "Seu corpo está se preparando."
+          },
+
+          fases: []
+        },
+
+        treino: {
+
+          titulo:
+            "Treino Personalizado",
+
+          foco:
+            usuarioBackend
+              .perfilFisico
+              .objetivo,
+
+          duracao:
+            "30 min",
+
+          intensidade: usuarioBackend
+              .perfilFisico
+              .nivelExperiencia,
+
+          totalExercicios: 5,
+
+          concluidos: 0,
+
+          frase:
+            "Você consegue!",
+
+          exercicios: []
+        },
+
+        checkin: {
+
+          humor: "",
+          disposicao: "",
+          intensidade: "",
+
+          atualizar(campo, valor) {
+            this[campo] = valor;
+          }
+        }
+      };
+
+      const app =
+        new LunaFitApp(
+          root,
+          estadoApp
+        );
+
+      app.render();
+
+    } catch (erro) {
+
+      console.error(erro);
+
+      alert(
+        "Erro ao carregar dados da usuária."
+      );
+    }
+
+
 });

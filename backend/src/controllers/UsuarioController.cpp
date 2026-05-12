@@ -29,20 +29,19 @@ crow::response UsuarioController::criarUsuario(
 
         double peso = body["peso"].d();
         double altura = body["altura"].d();
-
+        
         auto perfilJson = body["perfilFisico"];
 
         std::string objetivo = perfilJson["objetivo"].s();
-        std::string nivelExperiencia =
-            perfilJson["nivelExperiencia"].s();
+
+        std::string nivelExperiencia = perfilJson["nivelExperiencia"].s();
 
         PerfilFisico perfilFisico(
             objetivo,
             nivelExperiencia
         );
 
-        auto restricoes =
-            perfilJson["restricoesFisicas"];
+        auto restricoes = perfilJson["restricoesFisicas"];
 
         for (const auto& r : restricoes) {
             perfilFisico.adicionarRestricao(
@@ -52,11 +51,9 @@ crow::response UsuarioController::criarUsuario(
 
         auto cicloJson = body["cicloMenstrual"];
 
-        int diaUltimaMenstruacao =
-            cicloJson["diaUltimaMenstruacao"].i();
+        int diaUltimaMenstruacao = cicloJson["diaUltimaMenstruacao"].i();
 
-        int duracaoMediaCiclo =
-            cicloJson["duracaoMediaCiclo"].i();
+        int duracaoMediaCiclo = cicloJson["duracaoMediaCiclo"].i();
 
         CicloMenstrual cicloMenstrual(
             diaUltimaMenstruacao,
@@ -183,6 +180,39 @@ crow::response UsuarioController::buscarUsuario(
     resposta["email"] = usuario->getEmail();
     resposta["peso"] = usuario->getPeso();
     resposta["altura"] = usuario->getAltura();
+
+    //perfil
+    auto perfil =
+        usuario->getPerfilFisico();
+
+    resposta["perfilFisico"]["objetivo"] =
+        perfil.getObjetivo();
+
+    resposta["perfilFisico"]["nivelExperiencia"] =
+        perfil.getNivelExperiencia();
+
+    //restricoes
+    auto restricoes =
+        perfil.getRestricoes();
+
+    for (int i = 0; i < restricoes.size(); i++) {
+
+        resposta["perfilFisico"]
+                ["restricoesFisicas"][i] =
+                    restricoes[i];
+    }
+
+    //ciclo
+    auto ciclo =
+        usuario->getCicloMenstrual();
+
+    resposta["cicloMenstrual"]
+            ["diaUltimaMenstruacao"] =
+                ciclo.getDiaUltimaMenstruacao();
+
+    resposta["cicloMenstrual"]
+            ["duracaoMediaCiclo"] =
+                ciclo.getDuracaoMediaCiclo();
 
     return crow::response(200, resposta);
 }

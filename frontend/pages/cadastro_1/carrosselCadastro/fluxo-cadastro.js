@@ -81,11 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // 3. Monta o objeto 
+            // 3. Monta o objeto com todas as informações para enviar ao Crow
             const usuarioCompleto = {
                 "nome": localStorage.getItem('cad_nome') || "Usuária",
                 "email": emailSalvo,
+                "senha": localStorage.getItem('cad_senha'),
                 "idade": parseInt(localStorage.getItem('cad_idade')) || 0,
+                "peso": parseFloat(localStorage.getItem('cad_peso')) || 0,
+                "altura": parseFloat(localStorage.getItem('cad_altura')) || 0,
                 "perfilFisico": {
                     "objetivo": localStorage.getItem('cad_objetivo'),
                     "nivelExperiencia": localStorage.getItem('cad_nivelExperiencia'),
@@ -108,9 +111,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
+
+                    const usuarioCriado = await response.json();
+
+                    //salva o ID do usuário criado para futuras sessões
+                    localStorage.setItem('usuario_id', usuarioCriado.id);
+
                     alert("Sucesso! Sua jornada Lunafit começou.");
-                    localStorage.clear(); 
-                    window.location.href = "../Dashboard/Dashboard.html"; 
+
+                    //limapa apenas os dados temporários
+                    localStorage.removeItem('cad_nome');
+                    localStorage.removeItem('cad_idade');
+                    localStorage.removeItem('cad_peso');
+                    localStorage.removeItem('cad_altura');
+                    localStorage.removeItem('cad_objetivo');
+                    localStorage.removeItem('cad_nivelExperiencia');
+                    localStorage.removeItem('cad_restricoes');
+                    localStorage.removeItem('cad_email');
+                    //localStorage.removeItem('cad_diaMenstruacao');
+                    //localStorage.removeItem('cad_duracaoCiclo');
+
+                    //vai para o app
+                    window.location.href = "../../App/app.html"; 
                 } else {
                     const erroTxt = await response.text();
                     alert("Erro no servidor: " + erroTxt);
