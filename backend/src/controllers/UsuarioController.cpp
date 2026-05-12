@@ -51,12 +51,12 @@ crow::response UsuarioController::criarUsuario(
 
         auto cicloJson = body["cicloMenstrual"];
 
-        int diaUltimaMenstruacao = cicloJson["diaUltimaMenstruacao"].i();
+        std::string dataUltimaMenstruacao = cicloJson["dataUltimaMenstruacao"].s();
 
         int duracaoMediaCiclo = cicloJson["duracaoMediaCiclo"].i();
 
         CicloMenstrual cicloMenstrual(
-            diaUltimaMenstruacao,
+            dataUltimaMenstruacao,
             duracaoMediaCiclo
         );
 
@@ -142,8 +142,8 @@ crow::response UsuarioController::listarUsuarios() {
             usuario.getCicloMenstrual();
 
         u["cicloMenstrual"]
-         ["diaUltimaMenstruacao"] =
-            ciclo.getDiaUltimaMenstruacao();
+         ["dataUltimaMenstruacao"] =
+            ciclo.getDataUltimaMenstruacao();
 
         u["cicloMenstrual"]
          ["duracaoMediaCiclo"] =
@@ -206,13 +206,31 @@ crow::response UsuarioController::buscarUsuario(
     auto ciclo =
         usuario->getCicloMenstrual();
 
+        std::string faseAtual =
+        ciclo.calcularFaseAtual();
+
+        int diaCiclo =
+        ciclo.calcularDiaCiclo();
+
+        std::string proximaMenstruacao =
+        ciclo.calcularProximaMenstruacao();
+
     resposta["cicloMenstrual"]
-            ["diaUltimaMenstruacao"] =
-                ciclo.getDiaUltimaMenstruacao();
+            ["dataUltimaMenstruacao"] =
+                ciclo.getDataUltimaMenstruacao();
 
     resposta["cicloMenstrual"]
             ["duracaoMediaCiclo"] =
                 ciclo.getDuracaoMediaCiclo();
+    
+    resposta["cicloMenstrual"]["faseAtual"] =
+        faseAtual;
+
+    resposta["cicloMenstrual"]["diaCiclo"] =
+        diaCiclo;
+
+    resposta["cicloMenstrual"]["proximaMenstruacao"] =
+        proximaMenstruacao;
 
     return crow::response(200, resposta);
 }
@@ -264,14 +282,14 @@ crow::response UsuarioController::atualizarUsuario(
         auto cicloJson =
             body["cicloMenstrual"];
 
-        int diaUltimaMenstruacao =
-            cicloJson["diaUltimaMenstruacao"].i();
+        std::string dataUltimaMenstruacao =
+            cicloJson["dataUltimaMenstruacao"].s();
 
         int duracaoMediaCiclo =
             cicloJson["duracaoMediaCiclo"].i();
 
         CicloMenstrual cicloMenstrual(
-            diaUltimaMenstruacao,
+            dataUltimaMenstruacao,
             duracaoMediaCiclo
         );
 

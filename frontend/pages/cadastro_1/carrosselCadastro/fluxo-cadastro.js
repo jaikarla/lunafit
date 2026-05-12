@@ -66,9 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. Pega o valor do calendário ("AAAA-MM-DD")
             const dataCalendario = document.getElementById('input-dia-menstruacao').value;
             
+
+            /*
+            Bloco comentado para o teste, pois esses dados não podem ser recebidos assim. Precisa calcular com dataUltimaMenstruação e não diaUltimaMenstruacao.
+
             // Quebramos o texto "2026-05-11" nos tracinhos e pega a última parte (o dia)
             const partesData = dataCalendario.split('-'); 
-            const diaMenstruacao = parseInt(partesData[2]); // Pega apenas o "11"
+            const diaMenstruacao = parseInt(partesData[2]); // Pega apenas o "11" */
 
             const duracaoCiclo = parseInt(document.getElementById('input-duracao-ciclo').value);
 
@@ -95,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "restricoesFisicas": JSON.parse(localStorage.getItem('cad_restricoes') || "[]")
                 },
                 "cicloMenstrual": {
-                    "diaUltimaMenstruacao": diaMenstruacao, // Envia o dia correto
+                    "dataUltimaMenstruacao": dataCalendario, // Envia a data completa
                     "duracaoMediaCiclo": duracaoCiclo
                 }
             };

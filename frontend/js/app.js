@@ -123,22 +123,30 @@ document.addEventListener("DOMContentLoaded",
 
         ciclo: {
 
-          faseAtual: "Folicular",
-
-          diaAtual: usuarioBackend
+          faseAtual:
+            usuarioBackend
               .cicloMenstrual
-              .diaUltimaMenstruacao,
+              .faseAtual || "Folicular",
 
-          mediaDias: usuarioBackend
+          diaAtual:
+            usuarioBackend
+              .cicloMenstrual
+              .diaCiclo || 1,
+
+          mediaDias:
+            usuarioBackend
               .cicloMenstrual
               .duracaoMediaCiclo,
 
-          ultimaMenstruacao: usuarioBackend
+          ultimaMenstruacao:
+            usuarioBackend
               .cicloMenstrual
-              .diaUltimaMenstruacao,
+              .dataUltimaMenstruacao,
 
           proximaMenstruacao:
-            "Em breve",
+            usuarioBackend
+              .cicloMenstrual
+              .proximaMenstruacao || "Em breve",
 
           fase: {
             emoji: "🌙",
