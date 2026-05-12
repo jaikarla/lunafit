@@ -5,6 +5,7 @@ import { CycleView } from "./views/CycleView.js";
 import { WorkoutView } from "./views/WorkoutView.js";
 import { ProfileView } from "./views/ProfileView.js";
 import { CheckinView } from "./views/CheckinView.js";
+import { Treino } from "./models/Treino.js";
 
 class LunaFitApp {
   constructor(root, state) {
@@ -157,32 +158,29 @@ document.addEventListener("DOMContentLoaded",
           fases: []
         },
 
-        treino: {
+        treino: new Treino({
 
           titulo:
             "Treino Personalizado",
 
           foco:
             usuarioBackend
-              .perfilFisico
-              .objetivo,
+              .cicloMenstrual
+              .faseAtual,
 
           duracao:
             "30 min",
 
-          intensidade: usuarioBackend
+          intensidade:
+            usuarioBackend
               .perfilFisico
               .nivelExperiencia,
 
-          totalExercicios: 5,
-
-          concluidos: 0,
-
           frase:
-            "Você consegue!",
+            "Seu treino será gerado.",
 
           exercicios: []
-        },
+        }),
 
         checkin: {
 

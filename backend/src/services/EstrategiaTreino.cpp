@@ -6,7 +6,7 @@
 #include <algorithm>
 
 std::string DadosUsuario::obterPrimeiraRestricao(const PerfilFisico& perfil) {
-    const auto& restricoes = perfil.getRestricoes();
+    const auto restricoes = perfil.getRestricoes();
     if (restricoes.empty()) {
         return "nenhuma";
     }
@@ -17,7 +17,7 @@ DadosUsuario DadosUsuario::criarDe(const Usuario& usuario, const CicloMenstrual&
                                     const EstadoUsuario& estado, const std::string& intensidade,
                                     int diaAtual) {
     // Obtém o perfil físico do usuário
-    const PerfilFisico& perfil = usuario.getPerfilFisico();
+    const PerfilFisico perfil = usuario.getPerfilFisico();
     
     // Calcula a fase atual do ciclo menstrual
     std::string faseAtual = ciclo.calcularFaseAtual();

@@ -7,9 +7,19 @@
 #include "../services/FaseOvulatoria.h"
 #include "../services/FaseLutea.h"
 
+#include "../services/UsuarioService.h"
+#include "../models/Usuario.h"
+#include "../models/PerfilFisico.h"
+#include "../models/CicloMenstrual.h"
+
 #include "../models/EstadoUsuario.h"
 
 #include "../database/database.h"
+
+#include <algorithm>
+#include <cctype>
+
+#include <iostream> //para debug
 
 //controlador para recomendar um plano de treino diário personalizado com base na fase do ciclo menstrual, perfil físico, estado do usuário
 crow::response TreinoController::recomendarTreino(
@@ -29,20 +39,8 @@ crow::response TreinoController::recomendarTreino(
 
     try {
 
-        std::string faseCiclo =
-            body["faseCiclo"].s();
-
-        std::string objetivo =
-            body["objetivo"].s();
-
-        std::string restricaoFisica =
-            body["restricaoFisica"].s();
-
-        std::string intensidade =
-            body["intensidade"].s();
-
-        std::string nivelExperiencia =
-            body["nivelExperiencia"].s();
+        int usuarioId =
+            body["usuarioId"].i();
 
         int disposicao =
             body["disposicao"].i();
@@ -50,24 +48,55 @@ crow::response TreinoController::recomendarTreino(
         std::string humor =
             body["humor"].s();
 
+        Usuario* usuario =
+            UsuarioService::buscarUsuarioPorId(
+                usuarioId
+            );
+
+        if (usuario == nullptr) {
+
+            return crow::response(
+                404,
+                "Usuária não encontrada"
+            );
+        }
+
+        auto perfil =
+            usuario->getPerfilFisico();
+
+        auto ciclo =
+            usuario->getCicloMenstrual();
+
         EstadoUsuario estado(
             disposicao,
             humor
         );
 
-        DadosUsuario dados(
-            faseCiclo,
-            objetivo,
-            restricaoFisica,
-            intensidade,
-            nivelExperiencia,
-            disposicao <= 3 ? "baixa"
-            : disposicao <= 6 ? "media"
-            : "alta",
-            humor
+        //cria dados automaticamente
+        DadosUsuario dados =
+            DadosUsuario::criarDe(
+
+                *usuario,
+
+                ciclo,
+
+                estado,
+
+                "leve",
+
+                0
+            );
+
+        std::string faseCiclo =
+            dados.getFaseCiclo();
+
+        std::transform(
+            faseCiclo.begin(),
+            faseCiclo.end(),
+            faseCiclo.begin(),
+            ::tolower
         );
-        
-        //definir a estratégia de treino com base na fase do ciclo menstrual e gerar o plano de treino recomendado usando o RecomendadorTreino
+
         RecomendadorTreino recomendador;
 
         if (faseCiclo == "menstrual") {
@@ -102,13 +131,13 @@ crow::response TreinoController::recomendarTreino(
                 );
         }
 
-
-        std::string treino =
-            recomendador
-                .obterRecomendacaoDiaria(
-                    dados,
-                    db
-                );
+        //gera recomendação de treino
+            std::string treino =
+                recomendador
+                    .obterRecomendacaoDiaria(
+                        dados,
+                        db
+                    );
 
         crow::json::wvalue resposta;
 
@@ -123,11 +152,16 @@ crow::response TreinoController::recomendarTreino(
             resposta
         );
 
-    } catch (...) {
+    } catch (const std::exception& e) {
+
+        std::cerr
+            << "Erro ao gerar treino: "
+            << e.what()
+            << std::endl;
 
         return crow::response(
             500,
-            "Erro ao gerar treino"
+            e.what()
         );
-    }
+}
 }
