@@ -1,5 +1,3 @@
-<!--Telas carrossel de cadastro-->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
 
-    <!--link css, favicon,..-->
-    <link rel="stylesheet" href="../../components/global.css">
-    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../components/global.css">
+    <link rel="shortcut icon" href="../../../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="CarrosselCAD4.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <main class="main-wrapper">
-        
         <header class="onboarding-header">
-            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <img src="../../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
             <h1 class="brand-name">Lunafit</h1>
         </header>
 
@@ -40,32 +36,30 @@
 
             <form class="onboarding-form">
                 <div class="tags-container">
-                    
                     <label class="tag-item">
-                        <input type="checkbox" name="restricao" value="joelho">
+                        <input type="checkbox" name="restricao" value="Joelho">
                         <span class="tag-label">Joelho</span>
                     </label>
 
                     <label class="tag-item">
-                        <input type="checkbox" name="restricao" value="lombar">
+                        <input type="checkbox" name="restricao" value="Lombar">
                         <span class="tag-label">Lombar</span>
                     </label>
 
                     <label class="tag-item">
-                        <input type="checkbox" name="restricao" value="ombro">
+                        <input type="checkbox" name="restricao" value="Ombro">
                         <span class="tag-label">Ombro</span>
                     </label>
 
                     <label class="tag-item">
-                        <input type="checkbox" name="restricao" value="punho">
+                        <input type="checkbox" name="restricao" value="Punho">
                         <span class="tag-label">Punho</span>
                     </label>
 
                     <label class="tag-item">
-                        <input type="checkbox" name="restricao" value="tornozelo">
+                        <input type="checkbox" name="restricao" value="Tornozelo">
                         <span class="tag-label">Tornozelo</span>
                     </label>
-
                 </div>
 
                 <p class="helper-text">Vamos adaptar os exercícios respeitando seus limites.</p>
@@ -74,18 +68,17 @@
                     <a href="CarrosselCAD3.html" class="btn-back">
                         <i data-lucide="arrow-left" class="lucide-icon-fix"></i> Voltar
                     </a>
-                    <a href="CarrosselCAD5.html" class="btn-next">
+                    <button type="button" class="btn-next" id="btn-continuar-restricoes" style="border:none; cursor:pointer;">
                         Continuar <i data-lucide="arrow-right" class="lucide-icon-fix"></i>
-                    </a>
+                    </button>
                 </div>
             </form>
         </section>
-
     </main>
 
+    <script src="fluxo-cadastro.js"></script>
     <script>
         lucide.createIcons();
     </script>
-
 </body>
 </html>

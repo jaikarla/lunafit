@@ -20,7 +20,7 @@ DadosUsuario DadosUsuario::criarDe(const Usuario& usuario, const CicloMenstrual&
     const PerfilFisico& perfil = usuario.getPerfilFisico();
     
     // Calcula a fase atual do ciclo menstrual
-    std::string faseAtual = ciclo.calcularFaseAtual(diaAtual);
+    std::string faseAtual = ciclo.calcularFaseAtual();
     
     // Converte nível de disposição numérico para string (0-10 -> "baixa", "media", "alta")
     std::string disposicao;

@@ -10,19 +10,28 @@ class Usuario {
 private:
     int id;
     int idade;
-    std::string email;
+
     std::string nome;
+    std::string email;
+    std::string senha;
+
+    double peso;
+    double altura;
 
     PerfilFisico perfilFisico;
     CicloMenstrual cicloMenstrual;
     HistoricoTreinoDiario historico;
 
 public:
+    //construtor completo para criação de usuários reais
     Usuario(
         int id,
         int idade,
-        std::string email,
         std::string nome,
+        std::string email,
+        std::string senha,
+        double peso,
+        double altura,
         PerfilFisico perfilFisico,
         CicloMenstrual cicloMenstrual
     );
@@ -32,17 +41,14 @@ public:
     );
 
     int getId() const;
-
     int getIdade() const;
-
-    std::string getEmail() const;
-
     std::string getNome() const;
-
+    std::string getEmail() const;
+    std::string getSenha() const;
+    double getPeso() const;
+    double getAltura() const;
     PerfilFisico getPerfilFisico() const;
-
     CicloMenstrual getCicloMenstrual() const;
-
     HistoricoTreinoDiario& getHistorico();
 
 };

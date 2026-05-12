@@ -28,19 +28,23 @@ crow::response UsuarioController::criarUsuario(
         int idade = body["idade"].i();
         std::string email = body["email"].s();
 
+        std::string senha = body["senha"].s();
+
+        double peso = body["peso"].d();
+        double altura = body["altura"].d();
+        
         auto perfilJson = body["perfilFisico"];
 
         std::string objetivo = perfilJson["objetivo"].s();
-        std::string nivelExperiencia =
-            perfilJson["nivelExperiencia"].s();
+
+        std::string nivelExperiencia = perfilJson["nivelExperiencia"].s();
 
         PerfilFisico perfilFisico(
             objetivo,
             nivelExperiencia
         );
 
-        auto restricoes =
-            perfilJson["restricoesFisicas"];
+        auto restricoes = perfilJson["restricoesFisicas"];
 
         for (const auto& r : restricoes) {
             perfilFisico.adicionarRestricao(
@@ -50,22 +54,23 @@ crow::response UsuarioController::criarUsuario(
 
         auto cicloJson = body["cicloMenstrual"];
 
-        int diaUltimaMenstruacao =
-            cicloJson["diaUltimaMenstruacao"].i();
+        std::string dataUltimaMenstruacao = cicloJson["dataUltimaMenstruacao"].s();
 
-        int duracaoMediaCiclo =
-            cicloJson["duracaoMediaCiclo"].i();
+        int duracaoMediaCiclo = cicloJson["duracaoMediaCiclo"].i();
 
         CicloMenstrual cicloMenstrual(
-            diaUltimaMenstruacao,
+            dataUltimaMenstruacao,
             duracaoMediaCiclo
         );
 
         Usuario usuario(
             id,
             idade,
-            email,
             nome,
+            email,
+            senha, 
+            peso,
+            altura,
             perfilFisico,
             cicloMenstrual
         );
@@ -114,6 +119,8 @@ crow::response UsuarioController::listarUsuarios(Database& db) {
         u["nome"] = usuario.getNome();
         u["idade"] = usuario.getIdade();
         u["email"] = usuario.getEmail();
+        u["peso"] = usuario.getPeso();
+        u["altura"] = usuario.getAltura();
 
         auto perfil =
             usuario.getPerfilFisico();
@@ -138,8 +145,8 @@ crow::response UsuarioController::listarUsuarios(Database& db) {
             usuario.getCicloMenstrual();
 
         u["cicloMenstrual"]
-         ["diaUltimaMenstruacao"] =
-            ciclo.getDiaUltimaMenstruacao();
+         ["dataUltimaMenstruacao"] =
+            ciclo.getDataUltimaMenstruacao();
 
         u["cicloMenstrual"]
          ["duracaoMediaCiclo"] =
@@ -175,6 +182,59 @@ crow::response UsuarioController::buscarUsuario(
     resposta["nome"] = usuario->getNome();
     resposta["idade"] = usuario->getIdade();
     resposta["email"] = usuario->getEmail();
+    resposta["peso"] = usuario->getPeso();
+    resposta["altura"] = usuario->getAltura();
+
+    //perfil
+    auto perfil =
+        usuario->getPerfilFisico();
+
+    resposta["perfilFisico"]["objetivo"] =
+        perfil.getObjetivo();
+
+    resposta["perfilFisico"]["nivelExperiencia"] =
+        perfil.getNivelExperiencia();
+
+    //restricoes
+    auto restricoes =
+        perfil.getRestricoes();
+
+    for (int i = 0; i < restricoes.size(); i++) {
+
+        resposta["perfilFisico"]
+                ["restricoesFisicas"][i] =
+                    restricoes[i];
+    }
+
+    //ciclo
+    auto ciclo =
+        usuario->getCicloMenstrual();
+
+        std::string faseAtual =
+        ciclo.calcularFaseAtual();
+
+        int diaCiclo =
+        ciclo.calcularDiaCiclo();
+
+        std::string proximaMenstruacao =
+        ciclo.calcularProximaMenstruacao();
+
+    resposta["cicloMenstrual"]
+            ["dataUltimaMenstruacao"] =
+                ciclo.getDataUltimaMenstruacao();
+
+    resposta["cicloMenstrual"]
+            ["duracaoMediaCiclo"] =
+                ciclo.getDuracaoMediaCiclo();
+    
+    resposta["cicloMenstrual"]["faseAtual"] =
+        faseAtual;
+
+    resposta["cicloMenstrual"]["diaCiclo"] =
+        diaCiclo;
+
+    resposta["cicloMenstrual"]["proximaMenstruacao"] =
+        proximaMenstruacao;
 
     return crow::response(200, resposta);
 }
@@ -197,6 +257,9 @@ crow::response UsuarioController::atualizarUsuario(
         std::string nome = body["nome"].s();
         int idade = body["idade"].i();
         std::string email = body["email"].s();
+        std::string senha = body["senha"].s();
+        double peso = body["peso"].d();
+        double altura = body["altura"].d();
 
         auto perfilJson = body["perfilFisico"];
 
@@ -224,22 +287,25 @@ crow::response UsuarioController::atualizarUsuario(
         auto cicloJson =
             body["cicloMenstrual"];
 
-        int diaUltimaMenstruacao =
-            cicloJson["diaUltimaMenstruacao"].i();
+        std::string dataUltimaMenstruacao =
+            cicloJson["dataUltimaMenstruacao"].s();
 
         int duracaoMediaCiclo =
             cicloJson["duracaoMediaCiclo"].i();
 
         CicloMenstrual cicloMenstrual(
-            diaUltimaMenstruacao,
+            dataUltimaMenstruacao,
             duracaoMediaCiclo
         );
 
         Usuario usuarioAtualizado(
             id,
             idade,
-            email,
             nome,
+            email,
+            senha,
+            peso,
+            altura,
             perfilFisico,
             cicloMenstrual
         );
