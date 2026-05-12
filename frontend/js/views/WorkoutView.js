@@ -1,5 +1,7 @@
 import { BaseComponent } from "../components/BaseComponent.js";
 import { BottomNav } from "../components/BottomNav.js";
+import { gerarTreino } from "../api.js";
+import { Treino } from "../models/Treino.js";
 
 export class WorkoutView extends BaseComponent {
   html() {
@@ -14,7 +16,7 @@ export class WorkoutView extends BaseComponent {
 
         <div class="stack">
           <article class="card workout-hero">
-            <p class="eyebrow">Fase folicular</p>
+            <p class="eyebrow">Fase ${treino.foco}</p>
             <h2 class="workout-title">${treino.foco}</h2>
             <div class="workout-meta">
               <span>◷ ${treino.duracao}</span>
@@ -54,18 +56,158 @@ export class WorkoutView extends BaseComponent {
   }
 
   afterRender() {
-    new BottomNav(this.app, "workout").afterRender();
-    document.querySelectorAll("[data-exercise]").forEach((button) => {
-      button.addEventListener("click", () => {
-        this.app.state.treino.exercicios[Number(button.dataset.exercise)].alternarConclusao();
-        this.app.render();
-      });
+
+  new BottomNav(
+    this.app,
+    "workout"
+  ).afterRender();
+
+  document
+    .querySelectorAll("[data-exercise]")
+    .forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          this.app
+            .state
+            .treino
+            .exercicios[
+              Number(
+                button.dataset.exercise
+              )
+            ]
+            .alternarConclusao();
+
+          this.app.render();
+        }
+      );
     });
-    document.querySelector("[data-reset-workout]").addEventListener("click", () => {
-      this.app.state.treino.exercicios.forEach((exercicio) => {
-        exercicio.concluido = false;
-      });
-      this.app.render();
-    });
-  }
+
+  document
+    .querySelector(
+      "[data-reset-workout]"
+    )
+    .addEventListener(
+      "click",
+
+      async () => {
+
+        try {
+
+          const usuarioId =
+            localStorage.getItem(
+              "usuario_id"
+            );
+
+          const objetivo =
+            this.app.state.usuario.objetivo === "saude-mental"
+              ? "bem_estar"
+              : "fortalecimento";
+            
+          const resposta =
+            await gerarTreino({
+
+              usuarioId:
+                Number(usuarioId),
+
+              faseCiclo:
+                this.app.state.ciclo.faseAtual,
+
+              objetivo:
+                this.app.state.usuario.objetivo === "saude-mental"
+                  ? "bem_estar"
+                  : "fortalecimento",
+
+              restricaoFisica:
+                this.app.state.usuario.restricoes === "Nenhuma"
+                  ? "nenhuma"
+                  : this.app.state.usuario.restricoes
+                      .split(",")[0]
+                      .trim()
+                      .toLowerCase(),
+
+              intensidade: "moderado",
+
+              nivelExperiencia:
+                this.app.state.usuario.nivel
+                  .toLowerCase(),
+
+              disposicao: 7,
+
+              humor: "animada"
+            });
+
+          console.log(objetivo, resposta);
+
+          //transforma texto recebido em lista
+          const linhas =
+            resposta.treino
+              .split("\n")
+              .filter(
+                linha =>
+                  linha.startsWith("-")
+              );
+
+          const exercicios =
+            linhas.map((linha) => {
+
+              const texto =
+                linha.replace("-", "").trim();
+
+              return {
+
+                nome:
+                  texto.split("(")[0].trim(),
+
+                duracao:
+                  texto.includes("(")
+                    ? texto
+                        .split("(")[1]
+                        .split(")")[0]
+                    : "30 min",
+
+                descricao:
+                  texto.includes(":")
+                    ? texto
+                        .split(":")[1]
+                        .trim()
+                    : "Exercício recomendado"
+              };
+            });
+
+          this.app.state.treino = new Treino({
+
+            titulo:
+              "Treino Personalizado",
+
+            foco:
+              resposta.faseCiclo,
+
+            duracao:
+              "30 min",
+
+            intensidade:
+              "Moderado",
+
+            frase:
+              "Treino adaptado para você.",
+
+            exercicios
+          });
+
+          this.app.render();
+
+        } catch (erro) {
+
+          console.error(erro);
+
+          alert(
+            "Erro ao gerar treino."
+          );
+        }
+      }
+    );
+}
 }

@@ -12,14 +12,28 @@ export class Exercicio {
 }
 
 export class Treino {
-  constructor({ titulo, foco, duracao, intensidade, frase, exercicios }) {
-    this.titulo = titulo;
-    this.foco = foco;
-    this.duracao = duracao;
-    this.intensidade = intensidade;
-    this.frase = frase;
-    this.exercicios = exercicios.map((exercicio) => new Exercicio(exercicio));
-  }
+  constructor({
+  titulo,
+  foco,
+  duracao,
+  intensidade,
+  frase,
+  exercicios = []
+}) {
+
+  this.titulo = titulo;
+  this.foco = foco;
+  this.duracao = duracao;
+  this.intensidade = intensidade;
+  this.frase = frase;
+
+  this.exercicios =
+    (exercicios || [])
+      .map(
+        (exercicio) =>
+          new Exercicio(exercicio)
+  );
+}
 
   get totalExercicios() {
     return this.exercicios.length;

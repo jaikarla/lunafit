@@ -8,8 +8,8 @@
     <title>Cadastro</title>
 
     <!--link css, favicon,..-->
-    <link rel="stylesheet" href="../../components/global.css">
-    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../components/global.css">
+    <link rel="shortcut icon" href="../../../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="CarrosselCAD5.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -18,7 +18,7 @@
     <main class="main-wrapper">
         
         <header class="onboarding-header">
-            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <img src="../../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
             <h1 class="brand-name">Lunafit</h1>
         </header>
 
@@ -38,15 +38,15 @@
                 <p>Para sincronizar os treinos com seu corpo.</p>
             </div>
 
-            <form class="onboarding-form">
+            <form class="onboarding-form" id="form-final">
                 <div class="input-group">
-                    <label>Primeiro dia da última menstruação</label>
-                    <input type="date" class="full-input" placeholder="dd/mm/aaaa">
+                    <label for="input-dia-menstruacao">Primeiro dia da última menstruação</label>
+                    <input type="date" id="input-dia-menstruacao" class="full-input" required>
                 </div>
 
                 <div class="input-group">
-                    <label>Duração média do ciclo (dias)</label>
-                    <input type="number" class="full-input" placeholder="28">
+                    <label for="input-duracao-ciclo">Duração média do ciclo (dias)</label>
+                    <input type="number" id="input-duracao-ciclo" class="full-input" placeholder="28" required>
                     <p class="input-hint">A média costuma ser entre 25 e 32 dias.</p>
                 </div>
 
@@ -54,18 +54,14 @@
                     <a href="CarrosselCAD4.html" class="btn-back">
                         <i data-lucide="arrow-left" class="lucide-icon-fix"></i> Voltar
                     </a>
-                    <button type="submit" class="btn-finish">
+                    <button type="submit" class="btn-finish" style="border:none; cursor:pointer;">
                         Começar minha jornada ✨
                     </button>
                 </div>
             </form>
-        </section>
 
-    </main>
-
-    <script>
-        lucide.createIcons();
-    </script>
+            <script src="fluxo-cadastro.js"></script>
+            <script>lucide.createIcons();</script>
 
 </body>
 </html>

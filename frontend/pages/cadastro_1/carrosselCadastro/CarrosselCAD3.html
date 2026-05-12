@@ -1,5 +1,3 @@
-<!--Telas carrossel de cadastro-->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
 
-    <!--link css, favicon,..-->
-    <link rel="stylesheet" href="../../components/global.css">
-    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../components/global.css">
+    <link rel="shortcut icon" href="../../../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="CarrosselCAD3.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <main class="main-wrapper">
-        
         <header class="onboarding-header">
-            <img src="../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
+            <img src="../../../assets/logo-lunafit (sem fundo).png" alt="Logo Lunafit" class="logo-img">
             <h1 class="brand-name">Lunafit</h1>
         </header>
 
@@ -35,12 +31,11 @@
         <section class="onboarding-card">
             <div class="card-header">
                 <h2>Qual seu objetivo?</h2>
-                <p>Pode ajustar depois quando quiser.</p>
+                <p>Isso nos ajuda a selecionar os melhores exercícios.</p>
             </div>
 
-            <form class="onboarding-form">
+            <form class="onboarding-form" id="form-objetivo">
                 <div class="goal-grid">
-                    
                     <label class="goal-card">
                         <input type="radio" name="objetivo" value="fortalecimento" checked>
                         <div class="goal-content">
@@ -58,25 +53,19 @@
                             <span class="goal-desc">Bem-estar e equilíbrio</span>
                         </div>
                     </label>
-
                 </div>
 
                 <div class="button-container-between">
                     <a href="CarrosselCAD2.html" class="btn-back">
                         <i data-lucide="arrow-left" class="lucide-icon-fix"></i> Voltar
                     </a>
-                    <a href="CarrosselCAD4.html" class="btn-next">
+                    <button type="button" id="btn-continuar-objetivo" class="btn-next" style="border:none; cursor:pointer;">
                         Continuar <i data-lucide="arrow-right" class="lucide-icon-fix"></i>
-                    </a>
+                    </button>
                 </div>
             </form>
-        </section>
 
-    </main>
-
-    <script>
-        lucide.createIcons();
-    </script>
-
+            <script src="fluxo-cadastro.js"></script>
+            <script>lucide.createIcons();</script>
 </body>
 </html>
