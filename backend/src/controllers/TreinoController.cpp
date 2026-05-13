@@ -50,6 +50,7 @@ crow::response TreinoController::recomendarTreino(
 
         Usuario* usuario =
             UsuarioService::buscarUsuarioPorId(
+                db,
                 usuarioId
             );
 

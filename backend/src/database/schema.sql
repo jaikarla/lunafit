@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome      TEXT    NOT NULL,
     email     TEXT    NOT NULL UNIQUE,
+    senha     TEXT,
     idade     INTEGER,
+    peso      REAL,
+    altura    REAL,
     criado_em TEXT    DEFAULT (datetime('now'))
 );
 

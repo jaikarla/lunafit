@@ -6,9 +6,9 @@
 std::vector<Usuario> UsuarioService::usuarios;
 
 Usuario UsuarioService::usuarioCache(
-    0, 0, "", "",
+    0, 0, "", "", "", 0.0, 0.0,
     PerfilFisico("", ""),
-    CicloMenstrual(0, 28)
+    CicloMenstrual("", 28)
 );
 
 //juntar restrições em texto
@@ -50,12 +50,15 @@ void UsuarioService::criarUsuario(
     std::string restricoes =
         juntarRestricoes(perfil.getRestricoes());
 
-    db.execute(
-        "INSERT OR IGNORE INTO users (id, nome, email, idade) VALUES ("
+     db.execute(
+        "INSERT OR IGNORE INTO users (id, nome, email, senha, idade, peso, altura) VALUES ("
         + std::to_string(usuario.getId()) + ", '"
         + usuario.getNome() + "', '"
-        + usuario.getEmail() + "', "
-        + std::to_string(usuario.getIdade()) + ");"
+        + usuario.getEmail() + "', '"
+        + usuario.getSenha() + "', "
+        + std::to_string(usuario.getIdade()) + ", "
+        + std::to_string(usuario.getPeso()) + ", "
+        + std::to_string(usuario.getAltura()) + ");"
     );
 
     db.execute(
@@ -71,7 +74,7 @@ void UsuarioService::criarUsuario(
         "INSERT OR IGNORE INTO ciclos "
         "(user_id, data_ultima_menstruacao, duracao_media_ciclo) VALUES ("
         + std::to_string(usuario.getId()) + ", '"
-        + std::to_string(ciclo.getDiaUltimaMenstruacao()) + "', "
+        + ciclo.getDataUltimaMenstruacao() + "', "
         + std::to_string(ciclo.getDuracaoMediaCiclo()) + ");"
     );
 
@@ -102,7 +105,7 @@ std::vector<Usuario> UsuarioService::listarUsuarios(Database& db) {
 
     sqlite3_stmt* stmt;
     const char* sql =
-        "SELECT u.id, u.nome, u.email, u.idade, "
+        "SELECT u.id, u.nome, u.email, u.senha, u.idade, u.peso, u.altura, "
         "p.objetivo, p.nivel_experiencia, p.restricao_fisica, "
         "c.data_ultima_menstruacao, c.duracao_media_ciclo "
         "FROM users u "
@@ -115,29 +118,32 @@ std::vector<Usuario> UsuarioService::listarUsuarios(Database& db) {
         return lista;
 
     while (sqlite3_step(stmt) == SQLITE_ROW) {
-        int id    = sqlite3_column_int(stmt, 0);
-        std::string nome  = reinterpret_cast<const char*>(
-            sqlite3_column_text(stmt, 1));
-        std::string email = reinterpret_cast<const char*>(
-            sqlite3_column_text(stmt, 2));
-        int idade = sqlite3_column_int(stmt, 3);
+        int id        = sqlite3_column_int(stmt, 0);
+        std::string nome  = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        std::string email = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+        std::string senha = sqlite3_column_text(stmt, 3)
+            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)) : "";
+        int    idade  = sqlite3_column_int(stmt, 4);
+        double peso   = sqlite3_column_double(stmt, 5);
+        double altura = sqlite3_column_double(stmt, 6);
 
-        std::string objetivo = sqlite3_column_text(stmt, 4)
-            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)) : "";
-        std::string nivel = sqlite3_column_text(stmt, 5)
-            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)) : "";
-        std::string restricaoTexto = sqlite3_column_text(stmt, 6)
-            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)) : "nenhuma";
+        std::string objetivo = sqlite3_column_text(stmt, 7)
+            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7)) : "";
+        std::string nivel = sqlite3_column_text(stmt, 8)
+            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 8)) : "";
+        std::string restricaoTexto = sqlite3_column_text(stmt, 9)
+            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 9)) : "nenhuma";
 
-        int diaUltima    = sqlite3_column_int(stmt, 7);
-        int duracaoCiclo = sqlite3_column_int(stmt, 8);
+        std::string dataUltima = sqlite3_column_text(stmt, 10)
+            ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 10)) : "";
+        int duracaoCiclo = sqlite3_column_int(stmt, 11);
 
         PerfilFisico perfil(objetivo, nivel);
         for (const auto& r : separarRestricoes(restricaoTexto))
             perfil.adicionarRestricao(r);
 
-        CicloMenstrual ciclo(diaUltima, duracaoCiclo);
-        lista.push_back(Usuario(id, idade, email, nome, perfil, ciclo));
+        CicloMenstrual ciclo(dataUltima, duracaoCiclo);
+        lista.push_back(Usuario(id, idade, nome, email, senha, peso, altura, perfil, ciclo));
     }
     sqlite3_finalize(stmt);
     return lista;
@@ -150,7 +156,7 @@ Usuario* UsuarioService::buscarUsuarioPorId(
     {
     sqlite3_stmt* stmt;
     const char* sql =
-        "SELECT u.id, u.nome, u.email, u.idade, "
+        "SELECT u.id, u.nome, u.email, u.senha, u.idade, u.peso, u.altura, "
         "p.objetivo, p.nivel_experiencia, p.restricao_fisica, "
         "c.data_ultima_menstruacao, c.duracao_media_ciclo "
         "FROM users u "
@@ -170,20 +176,25 @@ Usuario* UsuarioService::buscarUsuarioPorId(
         return nullptr;
     }
 
-    int uid   = sqlite3_column_int(stmt, 0);
+    int uid           = sqlite3_column_int(stmt, 0);
     std::string nome  = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
     std::string email = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-    int idade = sqlite3_column_int(stmt, 3);
+    std::string senha = sqlite3_column_text(stmt, 3)
+        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)) : "";
+    int    idade  = sqlite3_column_int(stmt, 4);
+    double peso   = sqlite3_column_double(stmt, 5);
+    double altura = sqlite3_column_double(stmt, 6);
 
-    std::string objetivo = sqlite3_column_text(stmt, 4)
-        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)) : "";
-    std::string nivel = sqlite3_column_text(stmt, 5)
-        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)) : "";
-    std::string restricaoTexto = sqlite3_column_text(stmt, 6)
-        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)) : "nenhuma";
+    std::string objetivo = sqlite3_column_text(stmt, 7)
+        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7)) : "";
+    std::string nivel = sqlite3_column_text(stmt, 8)
+        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 8)) : "";
+    std::string restricaoTexto = sqlite3_column_text(stmt, 9)
+        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 9)) : "nenhuma";
 
-    int diaUltima    = sqlite3_column_int(stmt, 7);
-    int duracaoCiclo = sqlite3_column_int(stmt, 8);
+    std::string dataUltima = sqlite3_column_text(stmt, 10)
+        ? reinterpret_cast<const char*>(sqlite3_column_text(stmt, 10)) : "";
+    int duracaoCiclo = sqlite3_column_int(stmt, 11);
 
     sqlite3_finalize(stmt);
 
@@ -191,8 +202,8 @@ Usuario* UsuarioService::buscarUsuarioPorId(
     for (const auto& r : separarRestricoes(restricaoTexto))
         perfil.adicionarRestricao(r);
 
-    CicloMenstrual ciclo(diaUltima, duracaoCiclo);
-    usuarioCache = Usuario(uid, idade, email, nome, perfil, ciclo);
+    CicloMenstrual ciclo(dataUltima, duracaoCiclo);
+    usuarioCache = Usuario(uid, idade, nome, email, senha, peso, altura, perfil, ciclo);
     return &usuarioCache;
 }
 
@@ -220,7 +231,10 @@ bool UsuarioService::atualizarUsuario(
     bool ok = db.execute(
         "UPDATE users SET nome='" + usuarioAtualizado.getNome()
         + "', email='" + usuarioAtualizado.getEmail()
+        + "', senha='" + usuarioAtualizado.getSenha()
         + "', idade=" + std::to_string(usuarioAtualizado.getIdade())
+        + ", peso=" + std::to_string(usuarioAtualizado.getPeso())
+        + ", altura=" + std::to_string(usuarioAtualizado.getAltura())
         + " WHERE id=" + std::to_string(id) + ";"
     );
     if (!ok) return false;
@@ -234,7 +248,7 @@ bool UsuarioService::atualizarUsuario(
 
     db.execute(
         "UPDATE ciclos SET data_ultima_menstruacao='"
-        + std::to_string(ciclo.getDiaUltimaMenstruacao())
+        + ciclo.getDataUltimaMenstruacao()
         + "', duracao_media_ciclo="
         + std::to_string(ciclo.getDuracaoMediaCiclo())
         + " WHERE user_id=" + std::to_string(id) + ";"
