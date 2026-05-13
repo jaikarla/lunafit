@@ -1,6 +1,18 @@
-#este arquivo é para marcar os arquivos do sqlite como "vendored" para o GitHub Linguist, evitando que sejam contados como parte do código-fonte principal do projeto, pois ele acaba dominando as estatísticas.
+# Ignorar arquivos de build
+build/** linguist-generated=true
 
-#linha de commit para recalcular as estatísticas do GitHub Linguist
+# Ignorar banco e arquivos automáticos
+*.db linguist-generated=true
 
-src/database/sqlite/sqlite3.c linguist-vendored
-src/database/sqlite/sqlite3.h linguist-vendored
+# Ignorar dependências externas
+vendor/** linguist-vendored
+third_party/** linguist-vendored
+
+# Priorizar C++
+*.h linguist-language=C++
+*.cpp linguist-language=C++
+
+# Considerar JS/HTML/CSS normalmente
+*.js linguist-language=JavaScript
+*.html linguist-language=HTML
+*.css linguist-language=CSS
