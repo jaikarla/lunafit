@@ -28,28 +28,28 @@ export class ProfileView extends BaseComponent {
           </article>
 
           <article class="profile-row">
-            <span class="row-icon">◎</span>
+            <span class="row-icon">&#9678;</span>
             <span><span class="row-label">Objetivo</span><strong class="row-value">${usuario.objetivo}</strong></span>
           </article>
 
           <article class="profile-row">
-            <span class="row-icon">♙</span>
+            <span class="row-icon">&#9817;</span>
             <span><span class="row-label">Nivel</span><strong class="row-value">${usuario.nivel}</strong></span>
           </article>
 
           <article class="profile-row">
-            <span class="row-icon">♡</span>
-            <span><span class="row-label">Restrições</span><strong class="row-value">${usuario.restricoes}</strong></span>
+            <span class="row-icon">&#9825;</span>
+            <span><span class="row-label">Restri&ccedil;&otilde;es</span><strong class="row-value">${usuario.restricoes}</strong></span>
           </article>
 
           <article class="profile-row">
-            <span class="row-icon">☾</span>
-            <span><span class="row-label">Ciclo</span><strong class="row-value">${ciclo.mediaDias} dias em média</strong><span class="subtitle">Última menstruação: ${ciclo.ultimaMenstruacao}</span></span>
+            <span class="row-icon">&#9790;</span>
+            <span><span class="row-label">Ciclo</span><strong class="row-value">${ciclo.mediaDias} dias em m&eacute;dia</strong><span class="subtitle">&Uacute;ltima menstrua&ccedil;&atilde;o: ${ciclo.ultimaMenstruacao}</span></span>
           </article>
 
           <div class="profile-actions">
-            <button class="outline-button" type="button">↪ Sair</button>
-            <button class="outline-button danger-button" type="button">♧ Apagar conta</button>
+            <button class="outline-button" type="button" data-logout>&#8617; Sair</button>
+            <button class="outline-button danger-button" type="button" data-delete-account>&#9842; Apagar conta</button>
           </div>
 
           <p class="version-note">LunaFit - Movimento que respeita seu ritmo</p>
@@ -62,5 +62,40 @@ export class ProfileView extends BaseComponent {
 
   afterRender() {
     new BottomNav(this.app, "profile").afterRender();
+
+    const logoutButton =
+      document.querySelector("[data-logout]");
+
+    const deleteButton =
+      document.querySelector("[data-delete-account]");
+
+    logoutButton?.addEventListener("click", () => {
+      this.app.logout();
+    });
+
+    deleteButton?.addEventListener("click", async () => {
+      const confirmou = window.confirm(
+        "Tem certeza que deseja apagar sua conta? Essa acao nao pode ser desfeita."
+      );
+
+      if (!confirmou) {
+        return;
+      }
+
+      deleteButton.disabled = true;
+      deleteButton.textContent = "Apagando conta...";
+
+      try {
+        await this.app.deleteAccount();
+      } catch (erro) {
+        console.error(erro);
+        alert(
+          erro.message ||
+          "Nao foi possivel apagar a conta. Verifique se o backend esta rodando."
+        );
+        deleteButton.disabled = false;
+        deleteButton.innerHTML = "&#9842; Apagar conta";
+      }
+    });
   }
 }

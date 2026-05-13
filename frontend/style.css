@@ -92,6 +92,11 @@ button {
   background: rgba(255, 255, 255, 0.72);
 }
 
+.outline-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
 .gradient-button:active,
 .outline-button:active,
 .choice-card:active,
@@ -721,39 +726,51 @@ button {
   text-align: center;
 }
 
+.screen--checkin {
+  width: 100%;
+  max-width: none;
+  padding: 15vh 24px 80px;
+}
+
 .checkin-wrap {
-  width: min(100%, 500px);
+  width: min(100%, 560px);
 }
 
 .checkin-header {
-  margin-bottom: 24px;
+  width: min(100%, 540px);
+  margin: 0 auto 28px;
   text-align: center;
 }
 
 .checkin-label {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin-bottom: 18px;
-  color: var(--color-muted);
-  font-size: 12px;
+  margin-bottom: 26px;
+  color: #756476;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   text-transform: uppercase;
+}
+
+.checkin-label span {
+  color: var(--color-orange);
+  font-size: 22px;
+  line-height: 1;
 }
 
 .checkin-progress {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
+  gap: 8px;
   height: 5px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(129, 4, 133, 0.06);
 }
 
 .checkin-progress span {
-  background: rgba(129, 4, 133, 0.08);
+  border-radius: 999px;
+  background: rgba(129, 4, 133, 0.04);
 }
 
 .checkin-progress span.is-done {
@@ -761,14 +778,27 @@ button {
 }
 
 .checkin-card {
-  padding: 28px;
+  padding: 34px;
+  border: 0;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 22px 44px rgba(129, 4, 133, 0.1);
+}
+
+.checkin-card .title {
+  font-size: 34px;
+}
+
+.checkin-card .subtitle {
+  margin-top: 12px;
+  font-size: 15px;
 }
 
 .choices-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 9px;
-  margin-top: 22px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 30px;
 }
 
 .choices-row--three {
@@ -777,23 +807,29 @@ button {
 
 .choices-column {
   display: grid;
-  gap: 10px;
-  margin: 22px 0;
+  gap: 12px;
+  margin: 30px 0;
 }
 
 .choice-card {
   display: grid;
   place-items: center;
-  min-height: 78px;
-  padding: 12px 8px;
+  min-height: 84px;
+  padding: 14px 10px;
   color: var(--color-dark);
   font-weight: 800;
+  border-color: transparent;
+  border-radius: 16px;
+  background: #f5edf4;
 }
 
 .choice-card--wide {
   justify-items: start;
-  min-height: 72px;
-  padding: 14px 18px;
+  min-height: 86px;
+  padding: 18px 20px;
+  border: 2px solid rgba(240, 98, 146, 0.22);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .choice-card.is-selected,
@@ -805,14 +841,29 @@ button {
 
 .choice-icon {
   display: block;
-  margin-bottom: 8px;
-  font-size: 24px;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.choice-card--wide strong {
+  font-size: 17px;
+}
+
+.choice-card--wide .choice-subtitle {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.checkin-card--tall .gradient-button {
+  min-height: 46px;
+  margin-top: 4px;
+  font-size: 16px;
 }
 
 @media (max-width: 520px) {
   .screen--centered {
     place-items: start center;
-    padding-top: 18vh;
+    padding-top: 12vh;
   }
 
   .checkin-card {
@@ -820,12 +871,26 @@ button {
   }
 
   .choices-row {
+    grid-template-columns: repeat(2, 1fr);
     gap: 7px;
+  }
+
+  .choices-row--three {
+    grid-template-columns: 1fr;
   }
 
   .choice-card {
     min-height: 70px;
     font-size: 11px;
+  }
+
+  .checkin-card .title {
+    font-size: 29px;
+  }
+
+  .checkin-label {
+    font-size: 12px;
+    letter-spacing: 3px;
   }
 }
 /* __________________________________________________________________________
