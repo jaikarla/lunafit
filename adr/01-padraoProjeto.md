@@ -2,7 +2,7 @@
 
 **Status:** Aceito  
 **Data:** 09/05/2026  
-**Decisor:** Ana Clara 
+**Decisor:** Jaianny Souza 
 
 ---
 
