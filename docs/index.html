@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunafit</title>
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+    <style>
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(240, 98, 146, 0.3), 0 0 20px rgba(129, 4, 133, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(240, 98, 146, 0.6), 0 0 30px rgba(129, 4, 133, 0.4), 0 0 40px rgba(255, 138, 101, 0.2);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        :root {
+            --color-purple-dark: #1E011F;
+            --color-purple: #810485;
+            --color-pink: #F06292;
+            --color-orange: #FF8A65;
+            --bg-color: #ffffff;
+            --text-color: #1E011F;
+            --accent-color: #810485;
+            --secondary-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #ffffff 0%, #faf3ff 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+            animation: slideInDown 0.8s ease;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #810485;
+            animation: titleGlow 3s ease-in-out infinite;
+            letter-spacing: -1px;
+        }
+
+        h1 .fit-italico {
+            font-style: italic;
+            font-weight: 700; /* ajuste fino */
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .authors {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        /* Botões de links */
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-pink) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(129, 4, 133, 0.2);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(129, 4, 133, 0.35);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: var(--color-purple);
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--color-purple), var(--color-pink), var(--color-orange)) 1;
+            padding-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* Responsividades */
+        .media-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .media-container img, .media-container iframe {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(129, 4, 133, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            font-size: 0.9rem;
+            color: var(--color-purple);
+            border-top: 2px solid rgba(129, 4, 133, 0.1);
+        }
+        .projeto-logo {
+            max-width: 380px;
+            height: auto;
+            display: block;
+            margin: 8px auto 0 auto;
+            animation: slideInDown 1s ease 0.3s backwards;
+        }
+
+        /* Estilização dos blocos de funcionalidades */
+        .features-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 0 8px 24px rgba(129, 4, 133, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-pink), var(--color-orange));
+        }
+
+        .feature-item:hover {
+            box-shadow: 0 12px 32px rgba(129, 4, 133, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-item p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .feature-item strong {
+            color: var(--color-purple);
+        }
+
+        /* Container das mídias (vídeos e imagens) */
+        .feature-media {
+            text-align: center;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .feature-media video,
+        .feature-media img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(129, 4, 133, 0.12);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .feature-media img.treino-img {
+            max-width: 85%;
+            max-height: 480px;
+            width: auto;
+        }
+
+        /* Container para duas fotos lado a lado */
+        .feature-media-double {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 0;
+        }
+
+        /* Cada uma das colunas das fotos */
+        .media-column {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .media-column img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 380px;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(129, 4, 133, 0.12);
+            display: block;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .media-column img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .feature-media-double {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .media-column img {
+                max-height: 300px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Luna<span class="fit-italico">fit</span></h1>
+            <p class="subtitle">Movimento que respeita seu ritmo. Treinos personalizados para mulheres, em harmonia com seu ciclo e suas emoções.</p>
+            <p class="authors">Desenvolvido por: Ana Clara Bizarria, Byanca Souza, Jaianny Souza, Raiana Donato e Samara Petrilly. </p>
+
+            <img src="img/logo-lunafit.png" alt="Logo do Lunafit" class="projeto-logo">
+        </header>
+
+        <!-- Links Principais -->
+        <div class="links-container">
+            <a href="https://github.com/jaikarla/lunafit" class="btn" target="_blank">💻 Código Fonte</a>
+            <a href="https://docs.google.com/document/d/18GbXpqwoiQFSMQRl2vK7gBVsk1J9QaHCJFV0q2G2Za4/edit?usp=sharing" class="btn" target="_blank">📄 Relatório</a>
+            <a href="https://youtu.be/S9zcgUz1dpg?si=zz0aUTzsel7e3sMq" class="btn" target="_blank">🎬 Vídeo no YouTube</a>
+        </div>
+
+        <!-- Descrição -->
+        <section>
+            <h2>Sobre o Projeto</h2>
+            <p>O sistema realiza recomendações de exercícios físicos, ou seja, treinos personalizados, 
+                especificamente para mulheres. Apesar de ser um sistema amplamente consolidado no mercado, o sistema considera o ciclo menstrual da mulher para realizar as recomendações, pois, 
+                atualmente, o mercado é focado apenas nas condições físicas do corpo e não atuam em conjunto com as condições hormonais.</p>
+        </section>
+
+        <!-- Funcionalidades -->
+        <section>
+            <h2>Principais Funcionalidades</h2>
+            <div class="features-container">
+        
+                <!-- Funcionalidade 1 -->
+                <div class="feature-item">
+                    <p><strong>Dados do usuário:</strong> Entrada de informação para verificação da fase do ciclo menstrual: a usuária informa a data do último ciclo, então o site identifica a fase do ciclo. Registra restrições físicas, se houver e identifica o nível de experiência da usuária.</p>
+                    
+                    <div class="feature-media">
+                        <video autoplay loop muted playsinline width="100%"">
+                            <source src="img/cadastro_transparente.webm" type="video/webm">
+                            Seu navegador não suporta vídeos em HTML5.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Funcionalidade 2 -->
+                <div class="feature-item">
+                    <p><strong>Controle do ciclo menstrual:</strong> O sistema com base nas informações da usuária consegue mapear as próximas fases do ciclo e a data da próxima menstruação.</p>
+                    
+                    <div class="feature-media-double">
+                        <div class="media-column">
+                            <img src="img/print_ciclo1.jpeg" alt="Tela de controle do ciclo menstrual 1">
+                        </div>
+                        <div class="media-column">
+                            <img src="img/print_ciclo2.jpeg" alt="Tela de controle do ciclo menstrual 2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funcionalidade 3 -->
+                <div class="feature-item">
+                    <p><strong>Motor de recomendação de treino:</strong> Quando a usuária loga no sistema, é acolhida pelo sistema inteligente, com perguntas de avaliação de estado: a) como você está se sentindo hoje? e b) Qual a sua disposição? Com base nessas informações e algumas outras, o sistema gera o treino diário.</p>
+                
+                    <div class="feature-media">
+                        <img class="treino-img" src="img/print_treino.jpeg" alt="Tela do motor de recomendação de treinos">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Demonstração video yotube --> 
+        <section>
+            <h2>Demonstração</h2>
+            
+            <div class="media-container">
+                <!-- para incorporar vídeo do YouTube -->
+                <iframe width="100%" height="500" src="https://www.youtube.com/embed/S9zcgUz1dpg?si=iCZ3pr7v-HnCDhlo" style="border: none; border-radius: 12px;" allowfullscreen></iframe>
+       
+            </div>
+        </section>
+
+        <footer>
+            <p>Projeto desenvolvido para fins acadêmicos — 2026</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
