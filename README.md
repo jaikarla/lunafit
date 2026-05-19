@@ -4,6 +4,8 @@ LunaFit é uma aplicação desenvolvida em C++ com arquitetura orientada a objet
 
 O sistema integra frontend e backend através de API REST utilizando o framework Crow, permitindo geração dinâmica de treinos adaptados às diferentes fases hormonais.
 
+Acesse o site aqui - https://jaikarla.github.io/lunafit/ 
+
 ---
 
 # Funcionalidades
