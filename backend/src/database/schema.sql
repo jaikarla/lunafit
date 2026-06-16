@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome      TEXT    NOT NULL,
     email     TEXT    NOT NULL UNIQUE,
+    senha     TEXT,
     idade     INTEGER,
+    peso      REAL,
+    altura    REAL,
     criado_em TEXT    DEFAULT (datetime('now'))
 );
 
@@ -120,7 +123,7 @@ CREATE TABLE IF NOT EXISTS plano_treinos (
 CREATE TABLE IF NOT EXISTS historico_treino_diario (
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id          INTEGER NOT NULL,
-    treino_id        INTEGER NOT NULL,
+    treino_id        INTEGER,
     data             TEXT    DEFAULT (datetime('now')),
     nivel_disposicao TEXT CHECK(nivel_disposicao IN ('baixa', 'media', 'alta')),
     como_se_sentiu   TEXT,

@@ -5,8 +5,11 @@
 #include "../models/TreinoRealizado.h"
 #include "../models/Usuario.h"
 
+#include "../database/database.h"
+
 //Controlador para lidar com as requisições relacionadas ao histórico de treinos diários da usuária
 crow::response HistoricoController::registrarTreino(
+    Database& db,
     int usuarioId,
     const crow::request& req
 ) {
@@ -29,28 +32,21 @@ crow::response HistoricoController::registrarTreino(
         int nivelDisposicao =
             body["nivelDisposicao"].i();
 
-        Usuario* usuario =
-            UsuarioService
-                ::buscarUsuarioPorId(
-                    usuarioId
-                );
+        std::string nivel;
+        if (nivelDisposicao <= 3)       nivel = "baixa";
+        else if (nivelDisposicao <= 6)  nivel = "media";
+        else                               nivel = "alta";
 
-        if (!usuario) {
-
-            return crow::response(
-                404,
-                "Usuária não encontrada"
-            );
+        // salva no banco
+        std::string sql =
+            "INSERT INTO historico_treino_diario "
+            "(user_id, data, nivel_disposicao) VALUES ("
+            + std::to_string(usuarioId) + ", '"
+            + data + "', '"
+            + nivel + "');";
+        if (!db.execute(sql)){
+            return crow::response(500, "Erro ao salvar treino");
         }
-
-        TreinoRealizado treino(
-            data,
-            nivelDisposicao
-        );
-
-        usuario
-            ->getHistorico()
-            .registrarTreino(treino);
 
         return crow::response(
             201,
@@ -68,42 +64,36 @@ crow::response HistoricoController::registrarTreino(
 
 //Controlador para lidar com as requisições relacionadas à listagem do histórico de treinos diários da usuária
 crow::response HistoricoController::listarHistorico(
+    Database& db,
     int usuarioId
 ) {
 
-    Usuario* usuario =
-        UsuarioService
-            ::buscarUsuarioPorId(
-                usuarioId
-            );
+    // lê histórico do banco
+    sqlite3_stmt* stmt;
+    const char* sql =
+        "SELECT data, nivel_disposicao "
+        "FROM historico_treino_diario "
+        "WHERE user_id = ? ORDER BY data DESC;";
 
-    if (!usuario) {
+    if (sqlite3_prepare_v2(
+            db.getDb(), sql, -1, &stmt, nullptr
+        ) != SQLITE_OK)
+        return crow::response(500, "Erro ao buscar histórico");
 
-        return crow::response(
-            404,
-            "Usuária não encontrada"
-        );
-    }
-
-    auto historico =
-        usuario
-            ->getHistorico()
-            .listarTreinos();
+    sqlite3_bind_int(stmt, 1, usuarioId);
 
     crow::json::wvalue resposta;
-
     int i = 0;
 
-    for (const auto& treino : historico) {
-
-        resposta[i]["data"] =
-            treino.getData();
-
-        resposta[i]["nivelDisposicao"] =
-            treino.getNivelDisposicao();
-
+    while (sqlite3_step(stmt) == SQLITE_ROW) {
+        resposta[i]["data"] = reinterpret_cast<const char*>(
+            sqlite3_column_text(stmt, 0));
+        resposta[i]["nivelDisposicao"] = reinterpret_cast<const char*>(
+            sqlite3_column_text(stmt, 1));
         i++;
     }
+
+    sqlite3_finalize(stmt);
 
     return crow::response(
         200,

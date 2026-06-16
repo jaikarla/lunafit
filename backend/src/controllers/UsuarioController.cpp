@@ -6,7 +6,10 @@
 
 #include "../services/UsuarioService.h"
 
+#include "../database/database.h"
+
 crow::response UsuarioController::criarUsuario(
+    Database& db,
     const crow::request& req
 ) {
 
@@ -20,7 +23,7 @@ crow::response UsuarioController::criarUsuario(
 
     try {
 
-        int id = UsuarioService::gerarNovoId();
+        int id = UsuarioService::gerarNovoId(db);
         std::string nome = body["nome"].s();
         int idade = body["idade"].i();
         std::string email = body["email"].s();
@@ -72,7 +75,7 @@ crow::response UsuarioController::criarUsuario(
             cicloMenstrual
         );
 
-        UsuarioService::criarUsuario(usuario);
+        UsuarioService::criarUsuario(db, usuario);
 
         crow::json::wvalue resposta;
 
@@ -96,10 +99,10 @@ crow::response UsuarioController::criarUsuario(
 }
 
 //listar todos os usuários cadastrados, retornando um JSON com a lista de usuários e seus detalhes
-crow::response UsuarioController::listarUsuarios() {
+crow::response UsuarioController::listarUsuarios(Database& db) {
 
     auto usuarios =
-        UsuarioService::listarUsuarios();
+        UsuarioService::listarUsuarios(db);
 
     crow::json::wvalue resposta;
 
@@ -158,11 +161,12 @@ crow::response UsuarioController::listarUsuarios() {
 
 //buscar um usuário por ID, retornando um JSON com os detalhes do usuário encontrado ou uma mensagem de erro se não encontrado
 crow::response UsuarioController::buscarUsuario(
+    Database& db,
     int id
 ) {
 
     Usuario* usuario =
-        UsuarioService::buscarUsuarioPorId(id);
+        UsuarioService::buscarUsuarioPorId(db, id);
 
     if (usuario == nullptr) {
 
@@ -237,6 +241,7 @@ crow::response UsuarioController::buscarUsuario(
 
 //atualizar um usuário existente
 crow::response UsuarioController::atualizarUsuario(
+    Database& db,
     int id,
     const crow::request& req
 ) {
@@ -307,6 +312,7 @@ crow::response UsuarioController::atualizarUsuario(
 
         bool atualizado =
             UsuarioService::atualizarUsuario(
+                db,
                 id,
                 usuarioAtualizado
             );
@@ -335,11 +341,12 @@ crow::response UsuarioController::atualizarUsuario(
 
 //deltar um usuário
 crow::response UsuarioController::deletarUsuario(
+    Database& db,
     int id
 ) {
 
     bool removido =
-        UsuarioService::deletarUsuario(id);
+        UsuarioService::deletarUsuario(db, id);
 
     if (!removido) {
 

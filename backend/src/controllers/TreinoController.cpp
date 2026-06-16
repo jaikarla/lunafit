@@ -14,7 +14,7 @@
 
 #include "../models/EstadoUsuario.h"
 
-#include "../database/Database.h"
+#include "../database/database.h"
 
 #include <algorithm>
 #include <cctype>
@@ -23,6 +23,7 @@
 
 //controlador para recomendar um plano de treino diário personalizado com base na fase do ciclo menstrual, perfil físico, estado do usuário
 crow::response TreinoController::recomendarTreino(
+    Database& db,
     const crow::request& req
 ) {
 
@@ -49,6 +50,7 @@ crow::response TreinoController::recomendarTreino(
 
         Usuario* usuario =
             UsuarioService::buscarUsuarioPorId(
+                db,
                 usuarioId
             );
 
@@ -130,18 +132,13 @@ crow::response TreinoController::recomendarTreino(
                 );
         }
 
-        //conecta ao banco e gera o treino para o teste
-        Database db;
-
-            db.connect("lunafit.db");
-
+        //gera recomendação de treino
             std::string treino =
                 recomendador
                     .obterRecomendacaoDiaria(
                         dados,
                         db
                     );
-        //fecha a conexão com o banco
 
         crow::json::wvalue resposta;
 

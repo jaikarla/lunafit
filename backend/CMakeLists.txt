@@ -91,9 +91,3 @@ file(
     "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
-file(
-    COPY
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/database/lunafit.db"
-    DESTINATION
-    "${CMAKE_CURRENT_BINARY_DIR}"
-)
