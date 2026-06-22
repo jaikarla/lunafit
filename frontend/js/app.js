@@ -6,17 +6,95 @@ import { WorkoutView } from "./views/WorkoutView.js";
 import { ProfileView } from "./views/ProfileView.js";
 import { CheckinView } from "./views/CheckinView.js";
 import { Treino } from "./models/Treino.js";
+import { deletarUsuario } from "./api.js";
 
 class LunaFitApp {
   constructor(root, state) {
     this.root = root;
     this.state = state;
-    this.currentView = "home";
+    this.currentView = this.hasCompletedDailyCheckin()
+      ? "home"
+      : "checkin-1";
     this.dataFormatada = new Intl.DateTimeFormat("pt-BR", {
       weekday: "long",
       day: "numeric",
       month: "long",
     }).format(new Date());
+  }
+
+  getTodayKey() {
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoje.getDate()).padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+  }
+
+  getDailyCheckinStorageKey() {
+    const usuarioId =
+      this.state?.usuario?.id ||
+      localStorage.getItem("usuario_id") ||
+      "anonima";
+
+    return `lunafit_checkin_diario_${usuarioId}`;
+  }
+
+  hasCompletedDailyCheckin() {
+    return (
+      localStorage.getItem(this.getDailyCheckinStorageKey()) ===
+      this.getTodayKey()
+    );
+  }
+
+  completeDailyCheckin() {
+    localStorage.setItem(
+      this.getDailyCheckinStorageKey(),
+      this.getTodayKey()
+    );
+  }
+
+  clearLocalSession() {
+    const usuarioId =
+      this.state?.usuario?.id ||
+      localStorage.getItem("usuario_id");
+
+    if (usuarioId) {
+      localStorage.removeItem(
+        `lunafit_checkin_diario_${usuarioId}`
+      );
+    }
+
+    [
+      "usuario_id",
+      "cad_nome",
+      "cad_idade",
+      "cad_peso",
+      "cad_altura",
+      "cad_objetivo",
+      "cad_nivelExperiencia",
+      "cad_restricoes",
+      "cad_email",
+      "cad_senha"
+    ].forEach((chave) => localStorage.removeItem(chave));
+  }
+
+  logout() {
+    window.location.href = "../Login/login.html";
+  }
+
+  async deleteAccount() {
+    const usuarioId =
+      this.state?.usuario?.id ||
+      localStorage.getItem("usuario_id");
+
+    if (!usuarioId) {
+      throw new Error("Usuaria nao encontrada.");
+    }
+
+    await deletarUsuario(usuarioId);
+    this.clearLocalSession();
+    window.location.href = "../../index.html";
   }
 
   navigate(view) {
@@ -99,6 +177,7 @@ document.addEventListener("DOMContentLoaded",
 
         usuario: {
 
+          id: usuarioBackend.id || usuarioId,
           nome: usuarioBackend.nome,
           primeiroNome: usuarioBackend.nome.split(" ")[0],
           inicial: usuarioBackend.nome.charAt(0),

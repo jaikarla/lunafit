@@ -1,5 +1,5 @@
 const API_URL =
-    "http://localhost:18080";
+    "http://127.0.0.1:18080";
 
 export async function criarUsuario(usuario) {
 
@@ -56,4 +56,28 @@ export async function gerarTreino(dados) {
     }
 
     return await resposta.json();
+}
+
+export async function deletarUsuario(usuarioId) {
+
+    const resposta = await fetch(
+
+        `${API_URL}/usuarios/${usuarioId}`,
+
+        {
+            method: "DELETE"
+        }
+    );
+
+    if (!resposta.ok) {
+
+        const mensagem =
+            await resposta.text();
+
+        throw new Error(
+            mensagem || "Erro ao apagar usuaria"
+        );
+    }
+
+    return await resposta.text();
 }

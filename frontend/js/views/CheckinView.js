@@ -15,7 +15,7 @@ export class CheckinView extends BaseComponent {
     }[this.step];
 
     return `
-      <section class="screen screen--centered">
+      <section class="screen screen--centered screen--checkin">
         <div class="checkin-wrap">
           ${new CheckinHeader(this.app, this.step).html()}
           ${content}
@@ -26,17 +26,17 @@ export class CheckinView extends BaseComponent {
 
   stepOne() {
     const choices = [
-      ["Triste", "😔"],
-      ["Ansiosa", "🥺"],
-      ["Neutra", "😌"],
-      ["Feliz", "😊"],
-      ["Energizada", "🤩"],
+      ["Triste", "&#128532;"],
+      ["Ansiosa", "&#128563;"],
+      ["Neutra", "&#128524;"],
+      ["Feliz", "&#128522;"],
+      ["Energizada", "&#129321;"],
     ];
 
     return `
       <article class="card checkin-card">
-        <h1 class="title">Como você está se sentindo hoje?</h1>
-        <p class="subtitle">Não existe resposta errada.</p>
+        <h1 class="title">Como voc&ecirc; est&aacute; se sentindo hoje?</h1>
+        <p class="subtitle">N&atilde;o existe resposta errada.</p>
         <div class="choices-row">
           ${choices.map(([label, icon]) => this.choiceButton("humor", label, icon)).join("")}
         </div>
@@ -46,14 +46,14 @@ export class CheckinView extends BaseComponent {
 
   stepTwo() {
     const choices = [
-      ["Baixa", "🪫"],
-      ["Média", "🔋"],
-      ["Alta", "⚡"],
+      ["Baixa", "&#128267;"],
+      ["M&eacute;dia", "&#128267;"],
+      ["Alta", "&#9889;"],
     ];
 
     return `
       <article class="card checkin-card">
-        <h1 class="title">Qual sua disposição?</h1>
+        <h1 class="title">Qual sua disposi&ccedil;&atilde;o?</h1>
         <p class="subtitle">Vamos calibrar a intensidade.</p>
         <div class="choices-row choices-row--three">
           ${choices.map(([label, icon]) => this.choiceButton("disposicao", label, icon)).join("")}
@@ -70,9 +70,9 @@ export class CheckinView extends BaseComponent {
     ];
 
     return `
-      <article class="card checkin-card">
-        <h1 class="title">Que intensidade você quer?</h1>
-        <p class="subtitle">Vamos adaptar à sua fase também.</p>
+      <article class="card checkin-card checkin-card--tall">
+        <h1 class="title">Que intensidade voc&ecirc; quer?</h1>
+        <p class="subtitle">Vamos adaptar &agrave; sua fase tamb&eacute;m.</p>
         <div class="choices-column">
           ${choices
             .map(
@@ -85,7 +85,7 @@ export class CheckinView extends BaseComponent {
             )
             .join("")}
         </div>
-        <button class="gradient-button" type="button" data-finish-checkin>Ver meu treino de hoje ✨</button>
+        <button class="gradient-button" type="button" data-finish-checkin>Ver meu treino de hoje &#10024;</button>
       </article>
     `;
   }
@@ -115,7 +115,10 @@ export class CheckinView extends BaseComponent {
 
     const finishButton = document.querySelector("[data-finish-checkin]");
     if (finishButton) {
-      finishButton.addEventListener("click", () => this.app.navigate("home"));
+      finishButton.addEventListener("click", () => {
+        this.app.completeDailyCheckin();
+        this.app.navigate("home");
+      });
     }
   }
 }
